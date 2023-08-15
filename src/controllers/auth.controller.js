@@ -13,7 +13,7 @@ export const register = async (req, res) => {
         });
         const userSaved = await newUser.save();
         const token = await createAccessToken({ id: userSaved._id });
-        
+
         res.cookie("token", token);
         res.json({
             id: userSaved.id,
@@ -21,8 +21,37 @@ export const register = async (req, res) => {
             email: userSaved.email
         });
     } catch (err) {
-        console.log(err);
+        res.status(500).json({message:err.message});
     }
 };
 
-export const login = (req, res) => res.send('login');
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const userFound = await User.findOne({email});
+        if(!userFound) return res.status(400).json({message: "Usuario no encontrados"});
+
+        const isMatch = await bcrypt.compare(password, userFound.passwordHash);//encriptammos contraseña
+        if(!isMatch) return res.status(400).json({message: "Contraseña incorrecta"});
+     
+
+        const token = await createAccessToken({ id: userFound._id });
+
+        res.cookie("token", token);
+        res.json({
+            id: userFound.id,
+            username: userFound.username,
+            email: userFound.email
+        });
+    } catch (err) {
+        res.status(500).json({message:err.message});
+    }
+};
+
+export const logout = async (req, res) =>{
+    res.cookie('token', "", {
+        expires: new Date(0),
+        httpOnly: true
+    });
+    res.sendStatus(200);
+}

@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     passwordHash: {
         type: String,
         require: true,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true

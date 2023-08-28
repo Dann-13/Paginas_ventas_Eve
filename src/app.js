@@ -4,8 +4,13 @@ import morgan from "morgan";
 import authRoutes from './routes/auth.routes.js';
 import postRoutes from './routes/product.routes.js';
 import cookieParser from 'cookie-parser'
-const app = express();
+import cors from 'cors'
 
+
+const app = express();
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
 app.use(morgan('dev'));
 
 // Utiliza directamente bodyParser.json() y bodyParser.urlencoded()

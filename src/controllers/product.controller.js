@@ -16,13 +16,13 @@ export const createProduct = async (req, res) => {
 };
 export const getProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({message: 'post no encontrado'});
+    if (!product) return res.status(404).json({message: 'producto no encontrado'});
     res.json(product);
 };
 
 export const deleteProduct = async (req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id);
-    if (!product) return res.status(404).json({message: 'post no encontrado'});
+    if (!product) return res.status(404).json({message: 'producto no encontrado'});
     res.json(product);
 };
 export const updateProduct = async (req, res) => {

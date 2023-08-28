@@ -12,9 +12,9 @@ export const authRequired = (req, res, next) => {
         if (err) return res.status(401).json({ message: "Token no válido" });
 
         req.user = user; // Guardamos en req.user para que las demás rutas puedan acceder al usuario
-
+        console.log(req.user.admin)
         // Verificar si el usuario es administrador
-        if (req.user.isAdmin) {
+        if (req.user.admin) {
             next(); // Continuar si es un administrador
         } else {
             res.status(403).json({ message: "Acceso denegado: No eres un administrador" });
@@ -33,6 +33,7 @@ export const authUser = (req, res, next) => {
         if (err) return res.status(401).json({ message: "Token no válido" });
 
         req.user = user; // Guardamos en req.user para que las demás rutas puedan acceder al usuario
+        console.log(req.user);
         next(); // Continuar con la siguiente función en la cadena de middlewares
     });
 };

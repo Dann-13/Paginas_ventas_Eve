@@ -1,20 +1,27 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage';
+import ProductsPage from './pages/ProductsPage';
+import HomePage from './pages/HomePage'
+import Profile from './pages/Profile'
 import { AuthProvider } from './context/authContext';
+import ProductsFormPage from './pages/ProductsFormPage';
+import ProtectedRouted from './ProtectedRouted';
 function app() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<h1>Pagina de Inicio</h1>}></Route>
+          <Route path='/' element={<HomePage />}></Route>
           <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/register' element={<RegisterPage />}></Route>
-          <Route path='/products' element={<h1>Pagina de listar Productos</h1>}></Route>
-          <Route path='/add-product' element={<h1>Pagina de crear producto</h1>}></Route>
-          <Route path='/product/:id' element={<h1>Pagina de buscar producto</h1>}></Route>
-          <Route path='/profile' element={<h1>Pagina de perfil</h1>}></Route>
 
+          <Route element={<ProtectedRouted />}>
+            <Route path='/products' element={<ProductsPage />}></Route>
+            <Route path='/add-product' element={<ProductsFormPage />}></Route>
+            <Route path='/product/:id' element={<ProductsFormPage />}></Route>
+            <Route path='/profile' element={<Profile />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

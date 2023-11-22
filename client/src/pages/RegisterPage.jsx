@@ -1,36 +1,56 @@
 import { useForm } from 'react-hook-form'
-import { registerRequest } from '../api/auth'
+import { useAuth } from '../context/authContext'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 function RegisterPage() {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+    console.log(registerErrors)
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (isAuthenticated) navigate('/');
+    }, [isAuthenticated])
+    const onSubmit = handleSubmit(async (values) => {
+        signup(values);
+    });
+
     return (
 
 
         <div>
             <div class="w-full max-w-xs">
-                <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" 
-                onSubmit={handleSubmit(async(values) => {
-                    console.log(values)
-                    const res = await registerRequest(values)
-                    console.log(res)
-                })}>
+                {
+                    registerErrors.map((error, i) => (
+                        <div className='bg-red-400 text-white p-2' key={i}> {error} </div>
+                    ))
+                }
+                <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                    onSubmit={onSubmit}>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                             Username
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" {...register('username', { require: true })} />
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"
+                            {...register('username', { required: true })}
+                        />
+                        {
+                            errors.username && (
+                                <p className='text-red-400'>Usuario es requerido</p>
+                            )
+                        }
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                             Email
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email" {...register('email', { require: true })} />
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email" {...register('email', { required: true })} />
                     </div>
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                             Password
                         </label>
-                        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" {...register('password', { require: true })} />
+                        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" {...register('password', { required: true })} />
                         <p class="text-red-500 text-xs italic">Please choose a password.</p>
                     </div>
                     <div class="flex items-center justify-between">

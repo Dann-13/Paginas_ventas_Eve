@@ -4,6 +4,6 @@ export const validateSchema = (schema) => (req, res, next) => {
         next();
     } catch (error) {
         //solo necesitamos el mesaje, para ello recorremos errors para obtenerlo
-        return res.status(400).json({ error: error.errors.map(error => error.message) });
+        return res.status(400).json(error.errors.map(error => error.message));
     }
 }

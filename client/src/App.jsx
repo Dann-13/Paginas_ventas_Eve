@@ -7,9 +7,11 @@ import Profile from './pages/Profile'
 import { AuthProvider } from './context/authContext';
 import ProductsFormPage from './pages/ProductsFormPage';
 import ProtectedRouted from './ProtectedRouted';
+import { ProductProvider } from './context/productContext';
 function app() {
   return (
     <AuthProvider>
+      <ProductProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage />}></Route>
@@ -24,6 +26,7 @@ function app() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </ProductProvider>
     </AuthProvider>
   )
 }

@@ -8,6 +8,7 @@ import { AuthProvider } from './context/authContext';
 import ProductsFormPage from './pages/ProductsFormPage';
 import ProtectedRouted from './ProtectedRouted';
 import { ProductProvider } from './context/productContext';
+import ProfileUser from './pages/ProfileUser';
 function app() {
   return (
     <AuthProvider>
@@ -22,7 +23,7 @@ function app() {
             <Route path='/products' element={<ProductsPage />}></Route>
             <Route path='/add-product' element={<ProductsFormPage />}></Route>
             <Route path='/product/:id' element={<ProductsFormPage />}></Route>
-            <Route path='/profile' element={<Profile />}></Route>
+            <Route path='/profileUser' element={<ProfileUser />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

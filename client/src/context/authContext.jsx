@@ -18,8 +18,9 @@ export const useAuth = () => {
 // Componente AuthProvider que gestiona el estado de autenticación y proporciona el contexto a sus hijos.
 export const AuthProvider = ({ children }) => {
     // Define estados para el usuario, estado de autenticación y errores.
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const [isAuthenticated, setisAuthenticated] = useState(false);
+    const [isAdmin, setisAdmin] = useState(null)
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -42,9 +43,9 @@ export const AuthProvider = ({ children }) => {
     const signin = async (user) => {
         try {
             const res = await loginRequest(user);
-            console.log(res);
             setisAuthenticated(true);
             setUser(res.data);
+            setisAdmin(res.data.isAdmin)
         } catch (error) {
             setErrors(error.response.data)
         }
@@ -94,6 +95,7 @@ export const AuthProvider = ({ children }) => {
                 loading,
                 isAuthenticated,
                 errors,
+                isAdmin
 
             }}>
             {children}

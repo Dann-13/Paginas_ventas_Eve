@@ -5,11 +5,19 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 function LoginPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signin,isAuthenticated, isAdmin,errors: signinErrors } = useAuth();
+    const { signin, isAuthenticated, isAdmin, errors: signinErrors } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
-        if (isAuthenticated && isAdmin == false) navigate('/profileUser');
-    }, [isAuthenticated])
+        if (isAuthenticated) {
+            if (isAdmin) {
+                // Si es administrador, redirige a '/profileAdmin'
+                navigate('/profileAdmin');
+            } else {
+                // Si no es administrador, redirige a '/profileUser'
+                navigate('/profileUser');
+            }
+        }
+    }, [isAuthenticated, isAdmin, navigate]);
     
     const onSubmit = handleSubmit((data) => {
         signin(data);

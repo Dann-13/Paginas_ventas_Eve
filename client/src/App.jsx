@@ -3,7 +3,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage';
 import ProductsPage from './pages/ProductsPage';
 import HomePage from './pages/HomePage'
-import Profile from './pages/Profile'
+import ProfileAdmin from './pages/ProfileAdmin'
 import { AuthProvider } from './context/authContext';
 import ProductsFormPage from './pages/ProductsFormPage';
 import ProtectedRouted from './ProtectedRouted';
@@ -24,6 +24,7 @@ function app() {
             <Route path='/add-product' element={<ProductsFormPage />}></Route>
             <Route path='/product/:id' element={<ProductsFormPage />}></Route>
             <Route path='/profileUser' element={<ProfileUser />}></Route>
+            <Route path='/profileAdmin' element={<ProfileAdmin />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

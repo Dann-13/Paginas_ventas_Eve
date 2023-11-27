@@ -5,13 +5,19 @@ export const getProducts = async (req, res) => {
     res.json(products);
 };
 export const createProduct = async (req, res) => {
-    const {title, description,urlImage, price, category,  date} = req.body;
+    const {title, description,urlImage, price, category, quantity, date} = req.body;
+    // Convertir el precio a número y formatearlo como cadena
+    const priceNumber = parseFloat(price.replace('.', '').replace(',', '.'));
+    const priceString = Intl.NumberFormat().format(priceNumber);
+
     const newProduct = new Product ({
         title,
         description,
         urlImage,
-        price,
+        price: priceNumber,
+        priceString,
         category,
+        quantity,
         date
     });
     const savedProduct =  await newProduct.save();

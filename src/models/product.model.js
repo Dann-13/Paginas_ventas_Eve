@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    urlImage:{
+    urlImage: {
         type: String
     },
     price: {
@@ -18,6 +18,15 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String
+    },
+    priceString: {
+        type: String,
+        required: true,
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: 0,
     },
     created_at: {
         type: Date,

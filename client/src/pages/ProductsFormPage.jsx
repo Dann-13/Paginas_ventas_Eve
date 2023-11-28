@@ -1,25 +1,15 @@
 import React, { useState } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useProduct } from '../context/productContext'
+import IngredientsForm from '../components/IngredientsForm';
 const ProductsFormPage = () => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit } = useForm();
   const { createProduct } = useProduct();
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'ingredients',
-  });
 
   const onSubmit = handleSubmit((data) => {
     createProduct(data);
   });
 
-  const handleAgregarCampo = () => {
-    append({ name: '', amount: '' });
-  };
-
-  const handleQuitarCampo = (index) => {
-    remove(index);
-  };
 
   return (
     <div>
@@ -86,59 +76,21 @@ const ProductsFormPage = () => {
 
                     <div className="flex flex-col">
                       <label className="leading-loose">Categoria:</label>
-                      <select name="select"
-                        {...register('category')}>
-                        <option value="camisas">Camisas</option>
-                        <option value="chaquetas">Chaquetas</option>
-                        <option value="pantalones">Pantalones</option>
-                      </select >
+                      <select name="select" {...register('category')}>
+                        <option value="Hamburguesas">Hamburguesas</option>
+                        <option value="Pizza">Pizza</option>
+                        <option value="Papas Fritas">Papas Fritas</option>
+                        <option value="Hot Dogs">Hot Dogs</option>
+                        <option value="Pollo">Pollo</option>
+                        <option value="Tacos y Burritos">Tacos y Burritos</option>
+                        <option value="Sandwiches">Sandwiches</option>
+                      </select>
+
 
                     </div>
-                    <div className="flex justify-center items-center">
-                      <div className="bg-white p-2 w-full rounded shadow-md">
-                        {fields.map((field, index) => (
-                          <div key={field.id} className="mb-4">
-                            <label htmlFor={`ingredients[${index}].name`} className="block mb-2">
-                              Nombre:
-                            </label>
-                            <input
-                              type="text"
-                              id={`ingredients[${index}].name`}
-                              name={`ingredients[${index}].name`}
-                              placeholder="Ingrese nombre"
-                              className="w-full p-2 mb-2 border rounded"
-                              {...register(`ingredients[${index}].name`)}
-                            />
-
-                            <label htmlFor={`ingredients[${index}].amount`} className="block mb-2">
-                              Monto:
-                            </label>
-                            <input
-                              type="text"
-                              id={`ingredients[${index}].amount`}
-                              name={`ingredients[${index}].amount`}
-                              placeholder="Ingrese monto"
-                              className="w-full p-2 mb-2 border rounded"
-                              {...register(`ingredients[${index}].amount`)}
-                            />
-
-                            <button
-                              type="button"
-                              onClick={() => handleQuitarCampo(index)}
-                              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
-                            >
-                              Quitar Campo
-                            </button>
-                          </div>
-                        ))}
-                        <button
-                          type="button"
-                          onClick={handleAgregarCampo}
-                          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-                        >
-                          Agregar Campo
-                        </button>
-                      </div>
+                    <div>
+                    <label className="leading-loose">Ingredientes:</label>
+                      <IngredientsForm register={register} />
                     </div>
 
                   </div>

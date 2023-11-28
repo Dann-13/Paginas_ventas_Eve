@@ -1,6 +1,6 @@
 // Importa los módulos necesarios de React y la función de solicitud de registro desde un archivo de autenticación externo.
 import { createContext, useContext, useEffect, useState } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
+import { registerRequest, loginRequest, verifyTokenRequest, logoutRequest } from "../api/auth";
 import Cookies from 'js-cookie';
 
 // Crea un contexto de autenticación utilizando createContext.
@@ -85,12 +85,28 @@ export const AuthProvider = ({ children }) => {
         checkLogin();
     }, []);
 
+    //  Función para cerrar la sesión del usuario.
+    const logout = async () => {
+        try{
+            // Realiza una solicitud de logout utilizando la función logoutRequest.
+            await logoutRequest();
+            // Limpia las cookies y actualiza el estado de autenticación.
+            Cookies.remove('token');
+            setisAuthenticated(false);
+            setUser(null);
+            setisAdmin(null)
+        }catch(error){
+            console.error("Error during logout:", error);
+        }
+    }
+
     // Proporciona el contexto y sus valores a los componentes secundarios.
     return (
         <AuthContext.Provider
             value={{
                 signup,
                 signin,
+                logout,
                 user,
                 loading,
                 isAuthenticated,

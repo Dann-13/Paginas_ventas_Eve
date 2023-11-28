@@ -1,24 +1,41 @@
 import { createContext, useContext, useState } from "react";
-import {createProductRequest} from '../api/products'
+import { createProductRequest, getProductsRequest } from '../api/products'
 const ProductContext = createContext();
-export const  useProduct = () => {
+export const useProduct = () => {
     const context = useContext(ProductContext);
-    if (!context){
+    if (!context) {
         throw new Error("useAuth must be used within an ProductProvider")
     }
     return context;
 }
-export function ProductProvider({children}){
+export function ProductProvider({ children }) {
 
-    const [product, setProducts] = useState([]);
-    const createProduct = async(product) => {
-        const res = await createProductRequest(product)
-        console.log(res)
+    const [product, setProduct] = useState([]);
+    const [products, setProducts] = useState([]);
+
+    const getProducts = async () => {
+        try {
+            const res = await getProductsRequest();
+            setProducts(res.data);
+            console.log(res)
+        } catch (error) {
+            console.error(error);
+        }
     }
-    return(
+    const createProduct = async (product) => {
+        try {
+            const res = await createProductRequest(product);
+            console.log(res)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    return (
         <ProductContext.Provider value={{
             product,
-            createProduct
+            products,
+            createProduct,
+            getProducts
         }}>
             {children}
         </ProductContext.Provider>

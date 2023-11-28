@@ -1,13 +1,19 @@
-import React from 'react'
-import { useAuth } from '../context/authContext'
+import React, { useEffect } from 'react'
+import { useProduct } from '../context/productContext';
 
 function ProductsPage() {
-  const { user } = useAuth()
-  console.log(user)
-  console.log();
+  const { getProducts, products } = useProduct()
+  useEffect(() => {
+    getProducts();
+  }, [])
   return (
     <div>
-
+      {products.map(product => (
+        <div key={product._id}>
+          {product.title}
+        </div>
+      )
+      )}
     </div>
   )
 }

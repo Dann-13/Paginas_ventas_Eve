@@ -9,12 +9,15 @@ import ProductsFormPage from './pages/ProductsFormPage';
 import ProtectedRouted from './ProtectedRouted';
 import { ProductProvider } from './context/productContext';
 import ProfileUser from './pages/ProfileUser';
+import NavBar from './components/NavBar';
 function app() {
   return (
     <AuthProvider>
       <ProductProvider>
       <BrowserRouter>
+      <NavBar />
         <Routes>
+          
           <Route path='/' element={<HomePage />}></Route>
           <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/register' element={<RegisterPage />}></Route>

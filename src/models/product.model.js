@@ -28,6 +28,18 @@ const productSchema = new mongoose.Schema({
         required: true,
         min: 0,
     },
+    ingredients: [
+        {
+            name: {
+                type: String,
+                required: true,
+                maxlength: 100,
+            },
+            amount: {
+                type: String
+            },
+        }
+    ],
     created_at: {
         type: Date,
         default: Date.now

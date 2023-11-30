@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     // Define estados para el usuario, estado de autenticación y errores.
     const [user, setUser] = useState();
     const [isAuthenticated, setisAuthenticated] = useState(false);
-    const [isAdmin, setisAdmin] = useState(null)
+    const [isAdmin, setisAdmin] = useState(false)
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -30,8 +30,6 @@ export const AuthProvider = ({ children }) => {
         try {
             // Realiza una solicitud de registro utilizando la función registerRequest.
             const res = await registerRequest(user)
-            console.log(res.data)
-
             // Establece el usuario, marca como autenticado.
             setUser(res.data)
             setisAuthenticated(true);

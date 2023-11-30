@@ -33,7 +33,7 @@ function LoginPage() {
                 }
                 <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
                 <p class="text-gray-600 mb-6 text-sm">
-                    welcome back customer
+                    Bienvenido al Formulario de Login
                 </p>
                 <form action="#" method="post" onSubmit={onSubmit} >
                     <div class="space-y-2">

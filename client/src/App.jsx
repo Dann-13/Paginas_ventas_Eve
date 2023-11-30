@@ -9,7 +9,7 @@ import ProductsFormPage from './pages/ProductsFormPage';
 import ProtectedRouted from './ProtectedRouted';
 import { ProductProvider } from './context/productContext';
 import ProfileUser from './pages/ProfileUser';
-import NavBar from './components/NavBar';
+import NavBar from './components/navigation/NavBar';
 function app() {
   return (
     <AuthProvider>

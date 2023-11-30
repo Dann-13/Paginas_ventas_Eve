@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: VeneerTwo;
+    font-weight: normal;
+    font-style: normal;
+    src: url('/font/Two.ttf') format('truetype');
+  }
+}
+
+/* Resto de tus estilos Tailwind o personalizados */

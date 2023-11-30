@@ -10,10 +10,19 @@ export default {
         'primary': '#D52F1F',
       },
       textColor: {
-        'primary': '#D52F1F',
+        'primary': '#111827',
+      },
+      fontFamily: {
+        veneer: ['VeneerTwo', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase, theme }) {
+      addBase({
+        body: { fontFamily: theme('fontFamily.veneer') },
+      });
+    },
+  ],
 }
 

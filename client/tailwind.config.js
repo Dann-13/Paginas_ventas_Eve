@@ -17,12 +17,5 @@ export default {
       },
     },
   },
-  plugins: [
-    function ({ addBase, theme }) {
-      addBase({
-        body: { fontFamily: theme('fontFamily.veneer') },
-      });
-    },
-  ],
 }
 

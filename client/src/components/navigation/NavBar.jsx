@@ -21,8 +21,8 @@ function NavBar() {
         } else {
             return (
                 <div className='flex gap-3'>
-                    <li className='rounded-lg p-2'><Link to="/login">Iniciar Sesion</Link></li>
-                    <li className='rounded-lg bg-primary text-white p-2'><Link to="/register">Registrarse</Link></li>
+                    <li className='rounded-lg p-2 font-veneer'><Link to="/login">Iniciar Sesion</Link></li>
+                    <li className='rounded-lg bg-primary text-white p-2 font-veneer'><Link to="/register">Registrarse</Link></li>
                 </div>
             )
         }
@@ -36,8 +36,8 @@ function NavBar() {
                     </Link>
                 </div>
                 <div className='pt-3 pl-0 md:pt-0 md:pl-20'>
-                    <Link className='hover:border-b-2 border-red-400 p-2'>Sobre Nosotros</Link>
-                    <Link className='hover:border-b-2 border-red-400 p-2'>Contactanos</Link>
+                    <Link className='hover:border-b-2 border-red-400 p-2 font-veneer'>Sobre Nosotros</Link>
+                    <Link className='hover:border-b-2 border-red-400 p-2 font-veneer'>Contactanos</Link>
                 </div>
             </div>
             <div>

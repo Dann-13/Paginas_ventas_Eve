@@ -27,8 +27,8 @@ function HomePage() {
   return (
     <div className='text-white '>
       <CarouselSlides />
-      <ProductHeader title={'¡Ulimos Platillos!'}/>
-      <div className="grid grid-cols-1 p-10 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+      <ProductHeader title={'¡Lo Nuevos!'}/>
+      <div className="grid grid-cols-1 py-5 px-20 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} isAdmin={isAdmin} />
         ))}

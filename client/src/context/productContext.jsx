@@ -30,12 +30,21 @@ export function ProductProvider({ children }) {
             console.error(error);
         }
     }
+    const delateProduct = async (id) => {
+        try {
+            const res = await delateProduct(id);
+            console.log(res + "se ha eliminado el producto correctamente");
+        } catch (error) {
+            console.error(error);
+        }
+    }
     return (
         <ProductContext.Provider value={{
             product,
             products,
             createProduct,
-            getProducts
+            getProducts,
+            delateProduct
         }}>
             {children}
         </ProductContext.Provider>

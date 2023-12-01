@@ -6,7 +6,6 @@ import { useAuth } from '../context/authContext';
 import ProductHeader from '../components/sections/ProductHeader';
 function HomePage() {
   const { getProducts, products } = useProduct();
-  const isAdmin = useAuth();
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
@@ -27,12 +26,13 @@ function HomePage() {
   return (
     <div className='text-white '>
       <CarouselSlides />
-      <ProductHeader title={'¡Lo Nuevos!'}/>
+      <ProductHeader title={'¡Lo Nuevo!'}/>
       <div className="grid grid-cols-1 py-5 px-20 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
         {products.map((product) => (
-          <ProductCard key={product._id} product={product} isAdmin={isAdmin} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
+      <ProductHeader title={"¡Revisa Nuesto Menu!"} />
 
 
     </div>

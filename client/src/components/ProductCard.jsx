@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 
-function ProductCard({ product, isAdmin }) {
+function ProductCard({ product }) {
     return (
         <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
@@ -26,12 +26,6 @@ function ProductCard({ product, isAdmin }) {
                     </div>
 
                 </a>
-                {isAdmin.isAdmin && (
-                    <div className="flex justify-between mt-4">
-                        <button className="bg-red-400 rounded-lg p-2">Eliminar</button>
-                        <button className="bg-green-500 rounded-lg p-2">Editar</button>
-                    </div>
-                )}
             </div>
         </div>
 

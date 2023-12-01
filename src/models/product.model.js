@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slugify from "slugify";
 
 const productSchema = new mongoose.Schema({
     title: {
@@ -40,12 +41,23 @@ const productSchema = new mongoose.Schema({
             },
         }
     ],
+    slug:{
+        type: String,
+        unique: true,
+        index: true
+
+    },
     created_at: {
         type: Date,
         default: Date.now
     }
 }, {
     timestamps: true
+});
+
+productSchema.pre('save', function(next){
+    this.slug = slugify(this.title, {lower:true});
+    next();
 });
 
 export default mongoose.model("Product", productSchema);

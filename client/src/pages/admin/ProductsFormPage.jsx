@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useProduct } from '../context/productContext'
-import IngredientsForm from '../components/IngredientsForm';
+import { useProduct } from '../../context/productContext'
+import IngredientsForm from '../../components/IngredientsForm';
 const ProductsFormPage = () => {
   const { register, handleSubmit } = useForm();
   const { createProduct } = useProduct();

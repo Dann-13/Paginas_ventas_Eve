@@ -5,7 +5,7 @@ function ProductHeader({title}) {
     <div>
         <div className='py-5'>
           <div className='flex justify-center items-center flex-col md:flex-row'>       
-            <h2 className='p-4 text-4xl text-primary font-veneer'>{title}</h2>
+            <h2 className='p-4 text-4xl text-primary font-veneer text-center'>{title}</h2>
           </div>
         </div>
       

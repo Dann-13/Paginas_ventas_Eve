@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }) => {
             setisAuthenticated(true);
             setUser(res.data);
             setisAdmin(res.data.isAdmin)
+            
         } catch (error) {
             setErrors(error.response.data)
         }

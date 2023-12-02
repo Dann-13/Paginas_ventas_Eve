@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import CarouselSlides from '../components/navigation/CarouselSlides'
 import { useProduct } from '../context/productContext'
-import { useAuth } from '../context/authContext';
 import ProductHeader from '../components/sections/ProductHeader';
 function HomePage() {
   const { getProducts, products } = useProduct();

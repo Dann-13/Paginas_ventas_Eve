@@ -11,4 +11,17 @@
   }
 }
 
-
+/* Agrega estos estilos al CSS de tu proyecto */
+#default-carousel .slick-prev,
+#default-carousel .slick-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+#default-carousel .slick-prev {
+    left: 0;
+    display: none;
+}
+#default-carousel .slick-next {
+    right: 0;
+    display: none !important;
+}

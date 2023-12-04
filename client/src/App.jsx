@@ -10,6 +10,7 @@ import ProtectedRouted from './ProtectedRouted';
 import { ProductProvider } from './context/productContext';
 import ProfileUser from './pages/ProfileUser';
 import NavBar from './components/navigation/NavBar';
+import Footer from './components/navigation/Footer';
 function app() {
   return (
     <AuthProvider>
@@ -31,6 +32,7 @@ function app() {
             <Route path='/productsPageAdmin' element={<ProductsPage />}> </Route>
           </Route>
         </Routes>
+      <Footer />
       </BrowserRouter>
       </ProductProvider>
     </AuthProvider>

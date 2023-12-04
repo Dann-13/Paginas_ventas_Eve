@@ -13,7 +13,7 @@ function NavBar() {
 
     const renderLinks = () => {
         return (
-            <nav className='grid grid-cols-1 md:grid-cols-3 gap-4 justify-between p-3'>
+            <nav className='grid grid-cols-1 md:grid-cols-3 gap-4 justify-between p-3 bg-brownPrimary'>
                 <div className='col-span-1 flex justify-center md:justify-normal'>
                     <Link to="/">
                         <img src="logo.png" width={200} alt="Logo" />
@@ -23,7 +23,7 @@ function NavBar() {
                 {isAuthenticated && isAdmin ? (
                     <div className='col-span-1 md:col-span-2 flex flex-col md:flex-row gap-5 items-center justify-between'>
                         <div className='flex gap-3 md:flex-row items-center pl-0 md:pl-24'>
-                            <Link className='font-veneer cursor-pointer' to='/productsPageAdmin'>Ver Productos</Link>
+                            <Link className='font-veneer cursor-pointer text-white' to='/productsPageAdmin'>Ver Productos</Link>
                             <Link className='font-veneer cursor-pointer' to='add-products'>Añadir Producto</Link>
                         </div>
                         <div className='flex gap-2'>
@@ -33,9 +33,9 @@ function NavBar() {
                     </div>
                 ) : (
                     <div className='col-span-1 md:col-span-2 flex flex-col md:flex-row gap-5 items-center justify-between'>
-                        <div className='flex gap-3 md:flex-row items-center pl-0 md:pl-24'>
-                            <Link className='font-veneer cursor-pointer' to='/productsPageAdmin'>Contactenos</Link>
-                            <Link className='font-veneer cursor-pointer' to='/'>Menu</Link>
+                        <div className='flex gap-7 md:flex-row items-center pl-0 md:pl-24'>
+                            <Link className='font-veneer cursor-pointer text-white text-xl' to='/productsPageAdmin'>Contactenos</Link>
+                            <Link className='font-veneer cursor-pointer text-white text-xl' to='/'>Menu</Link>
                         </div>
                         {isAuthenticated ? (
                             <div className='flex gap-2'>

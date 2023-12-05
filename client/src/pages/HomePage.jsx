@@ -3,6 +3,7 @@ import ProductCard from '../components/ProductCard'
 import CarouselSlides from '../components/navigation/CarouselSlides'
 import { useProduct } from '../context/productContext'
 import ProductHeader from '../components/sections/ProductHeader';
+import ServicesSlider from '../components/sections/ServicesSlider';
 function HomePage() {
   const { getProducts, products } = useProduct();
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -32,7 +33,7 @@ function HomePage() {
         ))}
       </div>
       <ProductHeader title={"¡Revisa Nuesto Menu!"} />
-
+      <ServicesSlider />
 
     </div>
   )

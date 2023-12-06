@@ -19,38 +19,69 @@ const serviceData = [
         button: <Link to='/'>
             Explora Nuestras Hamburguesas
         </Link>
-        
+
     },
     {
         title: 'Salchipapas',
-        button: <Link to='/'></Link>
+        icon: <FaHamburger />,
+        button: <Link to='/'>
+            Descubre nuestras Salchipapas
+        </Link>
     },
     {
         title: 'Hot Dogs',
-        button: <Link to='/'></Link>
+        icon: <FaHotdog />,
+        button: <Link to='/hotdogs'>
+            Conoce nuestros Hot Dogs
+        </Link>
     },
     {
         title: 'Pollo',
-        button: <Link to='/'></Link>
+        icon: <FaDrumstickBite />,
+        button: <Link to='/pollo'>
+            Descubre nuestras opciones de Pollo
+        </Link>
     },
     {
         title: 'Tacos Y Burritos',
-        button: <Link to='/'></Link>
+        icon: <FaBacon />,
+        button: <Link to='/tacos-burritos'>
+            Explora Tacos y Burritos
+        </Link>
     },
     {
         title: 'Sandwiches',
-        button: <Link to='/'></Link>
+        icon: <FaCheese />,
+        button: <Link to='/sandwiches'>
+            Descubre nuestros Sandwiches
+        </Link>
     },
     {
-        title: 'Hambueguesas',
-        button: <Link to='/'></Link>
+        title: 'Pizzas',
+        icon: <FaPizzaSlice />,
+        button: <Link to='/pizzas'>
+            Explora nuestras Pizzas
+        </Link>
     },
     {
         title: 'Bebidas',
-        button: <Link to='/'></Link>
+        icon: <FaGlassWhiskey />,
+        button: <Link to='/'>
+            Descrubre nuestras Bebidas
+        </Link>
     },
 ]
 export default function App() {
+    const [activeSlide, setActiveSlide] = useState(null);
+
+    const handleMouseEnter = (index) => {
+        setActiveSlide(index);
+    };
+
+    const handleMouseLeave = () => {
+        setActiveSlide(null);
+    };
+
     return (
         <>
             <Swiper
@@ -61,7 +92,7 @@ export default function App() {
                 }}
                 mousewheel={
                     {
-                        forceToAxis:true
+                        forceToAxis: true
                     }
                 }
                 breakpoints={{
@@ -84,16 +115,33 @@ export default function App() {
                 }}
                 modules={[Pagination]}
                 className="mySwiper"
+                style={{
+                    background: 'url("/food1.jpg")',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    
+                }}
             >
                 {
                     serviceData.map((item, index) => {
                         return (
-                            <SwiperSlide key={index}>
-                                <p className='font-veneer text-4xl'>{item.title}</p>
-                                <div className='flex gap-3 justify-center items-center rounded-lg bg-brownPrimary text-white text-sm p-2 mt-2'>
-                                    {item.icon}
-                                    {item.button}
-                                </div>
+                            <SwiperSlide
+                                key={index}
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                                className={index === activeSlide ? 'bg-black bg-opacity-80 ' : 'bg-transparent'}
+                            >
+                                <p className='font-veneer text-4xl text-white'>{item.title}</p>
+
+
+                                {index === activeSlide && (
+                                    <div className="flex gap-3 justify-center items-center rounded-lg bg-brownPrimary text-white text-sm p-2 mt-2">
+                                        {item.icon}
+                                        {item.button}
+                                    </div>
+                                )}
+
+
                             </SwiperSlide>
                         )
                     })

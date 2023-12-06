@@ -27,7 +27,7 @@ function HomePage() {
     <div className='bg-[#FBECDA] '>
       <CarouselSlides />
       <ProductHeader title={'¡Lo Nuevo!'}/>
-      <div className="grid grid-cols-1 py-5 px-20 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 py-5 items-center sm:grid-cols-2 md:grid-cols-3 md:px-20 lg:grid-cols-4 xl:grid-cols-4 gap-4">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

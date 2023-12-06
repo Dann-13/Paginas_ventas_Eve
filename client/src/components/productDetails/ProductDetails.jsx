@@ -4,7 +4,7 @@ function ProductDetails({ product }) {
     return (
 
         <div>
-            <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+            <div className="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                 <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                     <img className="object-cover" src={product.urlImage} alt="product image" />
                 </a>

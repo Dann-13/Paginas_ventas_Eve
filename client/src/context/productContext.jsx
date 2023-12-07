@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { createProductRequest, getProductsRequest } from '../api/products'
+import { createProductRequest, getProductsRequest, deleteProductRequest } from '../api/products'
 const ProductContext = createContext();
 export const useProduct = () => {
     const context = useContext(ProductContext);
@@ -30,21 +30,36 @@ export function ProductProvider({ children }) {
             console.error(error);
         }
     }
-    const delateProduct = async (id) => {
+    const deleteProduct = async (id) => {
         try {
-            const res = await delateProduct(id);
-            console.log(res + "se ha eliminado el producto correctamente");
+            const res = await deleteProductRequest(id);
+            if (res && res.status === 204) {
+                setProducts(products.filter(product => product._id !== id));
+                console.log("Se ha eliminado el producto correctamente");
+            } else {
+                console.log("No se pudo eliminar el producto");
+            }
         } catch (error) {
-            console.error(error);
+            if (error.response) {
+                // El servidor respondió con un código de estado fuera del rango 2xx
+                console.error("Error de respuesta del servidor:", error.response.data);
+            } else if (error.request) {
+                // La solicitud fue realizada pero no se recibió una respuesta
+                console.error("No se recibió respuesta del servidor");
+            } else {
+                // Ocurrió un error durante la configuración de la solicitud
+                console.error("Error durante la configuración de la solicitud:", error.message);
+            }
         }
     }
+
     return (
         <ProductContext.Provider value={{
             product,
             products,
             createProduct,
             getProducts,
-            delateProduct
+            deleteProduct
         }}>
             {children}
         </ProductContext.Provider>

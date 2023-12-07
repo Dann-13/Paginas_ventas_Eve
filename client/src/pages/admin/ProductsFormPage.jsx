@@ -3,12 +3,15 @@ import { useForm } from 'react-hook-form'
 import { useProduct } from '../../context/productContext'
 import IngredientsForm from '../../components/IngredientsForm';
 import { FaHamburger } from 'react-icons/fa'
+import {useNavigate} from 'react-router-dom'
 const ProductsFormPage = () => {
   const { register, handleSubmit } = useForm();
   const { createProduct } = useProduct();
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit((data) => {
     createProduct(data);
+    navigate('/productsPageAdmin');
   });
 
 

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useProduct } from '../../context/productContext'
 
 function ProductDetails({ product }) {
+    const {deleteProduct} = useProduct();
     return (
 
         <div>
@@ -26,8 +28,13 @@ function ProductDetails({ product }) {
                     </div>
 
                     <div className='flex justify-between gap-2 items-center'>
-                        <button className='bg-green-400 rounded-lg py-2 px-3' >Editar</button>
-                        <button className='bg-red-400 rounded-lg py-2 px-3'> Eliminar</button>
+                        <button className='bg-green-400 rounded-lg py-2 px-3'  >Editar</button>
+                        <button className='bg-red-400 rounded-lg py-2 px-3'
+                            onClick={
+                                () => {
+                                    deleteProduct(product._id);
+                                }
+                            }> Eliminar</button>
                     </div>
 
 

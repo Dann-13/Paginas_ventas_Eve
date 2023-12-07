@@ -33,12 +33,12 @@ function CarouselSlides() {
 
     ]
     return (
-        <div className='w-full'>
+        <div className='w-full pt-[11rem] md:pt-[4.9rem] xl:pt-23'>
             <div id="default-carousel" className="relative">
                 <Slider ref={slider} {...settings}>
                     {imagesUrl.map((imageUrl, index) => (
                         <div
-                            className="overflow-hidden relative h-[20rem] sm:h-[22rem] xl:h-[24rem] 2xl:h-[26rem]"
+                            className="overflow-hidden relative h-[20rem] sm:h-[22rem] xl:h-[30rem] 2xl:h-[26rem]"
                             key={index}
                         >
                             <img

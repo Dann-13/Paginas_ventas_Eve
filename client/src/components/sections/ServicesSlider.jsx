@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
+//import framer-motion
+import { motion } from 'framer-motion'
+import { fadeIn } from '../../variants/variants'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaHamburger, FaHotdog, FaPizzaSlice, FaDrumstickBite, FaBacon, FaCheese, FaGlassWhiskey } from "react-icons/fa";
-
 
 // Import Swiper styles
 import 'swiper/css';
@@ -116,10 +118,10 @@ export default function App() {
                 modules={[Pagination]}
                 className="mySwiper"
                 style={{
-                    background: 'url("/food1.jpg")',
+                    background: 'url("/food4.jpg")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    
+
                 }}
             >
                 {
@@ -135,10 +137,14 @@ export default function App() {
 
 
                                 {index === activeSlide && (
-                                    <div className="flex gap-3 justify-center items-center rounded-lg bg-brownPrimary text-white text-sm p-2 mt-2">
+                                    <motion.div
+                                        variants={fadeIn("down", 0.1)}
+                                        initial="hidden"
+                                        animate="show"
+                                        className="flex gap-3 justify-center items-center rounded-lg bg-brownPrimary text-white text-sm p-2 mt-2">
                                         {item.icon}
                                         {item.button}
-                                    </div>
+                                    </motion.div>
                                 )}
 
 

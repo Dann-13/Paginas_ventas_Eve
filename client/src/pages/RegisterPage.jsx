@@ -16,7 +16,7 @@ function RegisterPage() {
     });
 
     return (
-        <div class="contain py-16">
+        <div class="contain py-48 md:py-28">
 
             <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
                 {

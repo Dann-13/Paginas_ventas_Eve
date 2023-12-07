@@ -23,7 +23,7 @@ function LoginPage() {
         signin(data);
     })
     return (
-        <div class="contain py-16">
+        <div class="contain pt-48 md:pt-24">
 
             <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
                 {

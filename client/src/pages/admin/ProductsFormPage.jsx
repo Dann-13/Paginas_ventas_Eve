@@ -16,18 +16,18 @@ const ProductsFormPage = () => {
     async function loadProduct() {
       if (params.id) {
         const product = await getProduct(params.id);
-        console.log(product);
+        
         setValue('title', product.title);
         setValue('description', product.description)
         setValue('urlImage', product.urlImage);
         setValue('price', product.price)
-        
-        setValue('quantity', product.quantity)
-
+        setValue('quantity', product.quantity);
+        setValue('category', product.category);
+        setValue('ingredients', product.ingredients)
       }
     }
     loadProduct();
-  }, [])
+  }, [params.id])
 
   // Función que se ejecuta al enviar el formulario
   const onSubmit = handleSubmit((data) => {
@@ -38,7 +38,6 @@ const ProductsFormPage = () => {
     }
     navigate('/productsPageAdmin');
   });
-
 
   return (
     <div className='pt-40 lg:pt-14'>
@@ -122,7 +121,9 @@ const ProductsFormPage = () => {
                     </div>
                     <div>
                       <label className="leading-loose">Ingredientes:</label>
-                      <IngredientsForm register={register} />
+                      <IngredientsForm 
+                      register={register}
+                      />
                     </div>
 
                   </div>

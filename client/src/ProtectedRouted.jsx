@@ -4,7 +4,7 @@ import { useAuth } from './context/authContext'
 
 function ProtectedRouted() {
     const {loading, isAuthenticated} = useAuth();
-    console.log(loading, isAuthenticated)
+    console.log("esta autenticado?" , isAuthenticated)
     if(loading) return <h1>Loading....</h1>
     if(!loading && !isAuthenticated) return <Navigate to='/login' replace/>
   return <Outlet />

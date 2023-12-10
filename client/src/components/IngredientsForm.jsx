@@ -18,7 +18,6 @@ function IngredientsForm({ register }) {
     useEffect(() => {
         async function loadProduct() {
             if (params.id) {
-                console.log("entro")
                 const product = await getProduct(params.id);
 
                 // Verificar si hay ingredientes antes de establecer el estado

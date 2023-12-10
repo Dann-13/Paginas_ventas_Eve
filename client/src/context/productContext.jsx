@@ -23,7 +23,7 @@ export function ProductProvider({ children }) {
     }
     const createProduct = async (product) => {
         try {
-            const res = await createProductRequest(product);
+            await createProductRequest(product);
         } catch (error) {
             console.error(error);
         }

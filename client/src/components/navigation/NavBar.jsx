@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 
 function NavBar() {
-    const { logout, isAuthenticated, isAdmin } = useAuth();
+    const { logout, isAuthenticated } = useAuth();
     const navigate = useNavigate();
-
+    const isAdmin = localStorage.getItem('isAdmin');
     const handleLogout = async () => {
         await logout();
         navigate('/');

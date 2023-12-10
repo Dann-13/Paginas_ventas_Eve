@@ -8,17 +8,12 @@ export const createProduct = async (req, res) => {
     try {
         const { title, description, urlImage, price, category, quantity, ingredients, date } = req.body;
 
-        // Convertir el precio a número y formatearlo como cadena
-        const priceNumber = parseFloat(price.replace('.', '').replace(',', '.'));
-        const priceString = Intl.NumberFormat().format(priceNumber);
-
         // Crea un nuevo producto con los datos recibidos
         const newProduct = new Product({
             title,
             description,
             urlImage,
-            price: priceNumber,
-            priceString,
+            price,
             category,
             quantity,
             ingredients,

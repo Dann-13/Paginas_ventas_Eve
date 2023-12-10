@@ -1,16 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useProduct } from '../../context/productContext'
 import IngredientsForm from '../../components/IngredientsForm';
 import { FaHamburger } from 'react-icons/fa'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 const ProductsFormPage = () => {
-  const { register, handleSubmit } = useForm();
-  const { createProduct } = useProduct();
+  // Extraer funciones útiles de react-hook-form y del contexto de productos
+  const { register, handleSubmit, setValue } = useForm();
+  const { createProduct, getProduct, updateProduct } = useProduct();
   const navigate = useNavigate();
+  const params = useParams();
+  useEffect(() => {
 
+
+    async function loadProduct() {
+      if (params.id) {
+        const product = await getProduct(params.id);
+        console.log(product);
+        setValue('title', product.title);
+        setValue('description', product.description)
+        setValue('urlImage', product.urlImage);
+        setValue('price', product.price)
+        
+        setValue('quantity', product.quantity)
+
+      }
+    }
+    loadProduct();
+  }, [])
+
+  // Función que se ejecuta al enviar el formulario
   const onSubmit = handleSubmit((data) => {
-    createProduct(data);
+    if (params.id) {
+      updateProduct(params.id, data)
+    } else {
+      createProduct(data);
+    }
     navigate('/productsPageAdmin');
   });
 

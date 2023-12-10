@@ -73,7 +73,7 @@ const serviceData = [
         </Link>
     },
 ]
-export default function App() {
+export default function ServicesSlider() {
     const [activeSlide, setActiveSlide] = useState(null);
 
     const handleMouseEnter = (index) => {
@@ -85,7 +85,7 @@ export default function App() {
     };
 
     return (
-        <>
+        <div id='servicesSlider'>
             <Swiper
                 slidesPerView={1}
                 spaceBetween={10}
@@ -154,6 +154,6 @@ export default function App() {
                 }
 
             </Swiper>
-        </>
+        </div>
     );
 }

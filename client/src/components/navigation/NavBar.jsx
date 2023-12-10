@@ -11,12 +11,19 @@ function NavBar() {
         navigate('/');
     };
 
+    const navigateToServicesSlider = () => {
+        const servicesSliderElement = document.getElementById('servicesSlider');
+        if (servicesSliderElement) {
+          servicesSliderElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+
     const renderLinks = () => {
         return (
             <nav className='grid grid-cols-1 md:grid-cols-3 gap-4 justify-between p-3 bg-brownPrimary fixed w-full z-10'>
                 <div className='col-span-1 flex justify-center md:justify-normal'>
                     <Link to="/">
-                        <img src="logo.png" width={200} alt="Logo" />
+                        <img src="/logo.png" width={200} alt="Logo" />
                     </Link>
                 </div>
 
@@ -35,7 +42,7 @@ function NavBar() {
                     <div className='col-span-1 md:col-span-2 flex flex-col md:flex-row gap-5 items-center justify-between'>
                         <div className='flex gap-7 md:flex-row items-center pl-0 md:pl-24'>
                             <Link className='font-veneer cursor-pointer text-white text-xl' to='/productsPageAdmin'>Contactenos</Link>
-                            <Link className='font-veneer cursor-pointer text-white text-xl' to='/'>Menu</Link>
+                            <button className='font-veneer cursor-pointer text-white text-xl'onClick={navigateToServicesSlider}>Menu</button>
                         </div>
                         {isAuthenticated ? (
                             <div className='flex gap-2'>

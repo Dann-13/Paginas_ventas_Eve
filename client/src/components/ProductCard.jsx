@@ -17,7 +17,7 @@ function ProductCard({ product }) {
                 </a>
                 <div className="mt-2 mb-5 flex items-center justify-between">
                     <p>
-                        <span className="text-3xl font-bold text-slate-900">${product.priceString}</span>
+                        <span className="text-3xl font-bold text-slate-900">${product.price}</span>
                     </p>
                 </div>
                 <a

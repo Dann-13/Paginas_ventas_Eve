@@ -1,5 +1,6 @@
 import React from 'react'
 import { useProduct } from '../../context/productContext'
+import { Link } from 'react-router-dom';
 
 function ProductDetails({ product }) {
     const {deleteProduct} = useProduct();
@@ -16,7 +17,7 @@ function ProductDetails({ product }) {
                     </a>
                     <div className="mt-2 mb-5 flex items-center justify-between">
                         <p>
-                            <span className="text-3xl font-bold text-slate-900">${product.priceString}</span>
+                            <span className="text-3xl font-bold text-slate-900">${product.price}</span>
                         </p>
                     </div>
                     <div className='py-3'>
@@ -28,7 +29,7 @@ function ProductDetails({ product }) {
                     </div>
 
                     <div className='flex justify-between gap-2 items-center'>
-                        <button className='bg-green-400 rounded-lg py-2 px-3'  >Editar</button>
+                        <Link to={`/product/${product._id}`} className='bg-green-400 rounded-lg py-2 px-3'  >Editar</Link>
                         <button className='bg-red-400 rounded-lg py-2 px-3'
                             onClick={
                                 () => {

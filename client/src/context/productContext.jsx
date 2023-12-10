@@ -17,7 +17,6 @@ export function ProductProvider({ children }) {
         try {
             const res = await getProductsRequest();
             setProducts(res.data);
-            console.log(res)
         } catch (error) {
             console.error(error);
         }
@@ -25,7 +24,6 @@ export function ProductProvider({ children }) {
     const createProduct = async (product) => {
         try {
             const res = await createProductRequest(product);
-            console.log(res)
         } catch (error) {
             console.error(error);
         }
@@ -52,19 +50,19 @@ export function ProductProvider({ children }) {
             }
         }
     }
-    const getProduct = async (id) =>{
-        try{
+    const getProduct = async (id) => {
+        try {
             const res = await getProductRequest(id);
             return res.data;
-        }catch(error){
+        } catch (error) {
             console.log(error)
 
         }
     }
     const updateProduct = async (id, product) => {
-        try{
+        try {
             await updateProductRequest(id, product);
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }

@@ -7,6 +7,8 @@ function LoginPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { signin, isAuthenticated, isAdmin, errors: signinErrors } = useAuth();
     const navigate = useNavigate();
+    console.log("es admin?" + isAdmin)
+    console.log("esta autenticado " + isAuthenticated)
     useEffect(() => {
         if (isAuthenticated) {
             if (isAdmin) {

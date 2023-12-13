@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     // Define estados para el usuario, estado de autenticación y errores.
     const [user, setUser] = useState();
     const [isAuthenticated, setisAuthenticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -43,10 +44,7 @@ export const AuthProvider = ({ children }) => {
             const res = await loginRequest(user);
             setisAuthenticated(true);
             setUser(res.data);
-
-            // Almacena isAdmin en localStorage
-            localStorage.setItem('isAdmin', res.data.isAdmin);
-
+            setIsAdmin(res.data.isAdmin)
         } catch (error) {
             setErrors(error.response.data)
         }
@@ -115,9 +113,7 @@ export const AuthProvider = ({ children }) => {
             // Limpia las cookies y actualiza el estado de autenticación.
             Cookies.remove('token');
             setisAuthenticated(false);
-
-            // Elimina isAdmin del localStorage
-            localStorage.removeItem('isAdmin');
+            setIsAdmin(false)
 
             setUser(null);
         } catch (error) {
@@ -136,6 +132,7 @@ export const AuthProvider = ({ children }) => {
                 loading,
                 isAuthenticated,
                 errors,
+                isAdmin
             }}>
             {children}
         </AuthContext.Provider>

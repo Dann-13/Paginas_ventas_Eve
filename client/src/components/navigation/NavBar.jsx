@@ -3,20 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 
 function NavBar() {
-    const { logout, isAuthenticated } = useAuth();
+    const { logout, isAuthenticated, isAdmin } = useAuth();
     const navigate = useNavigate();
-    const isAdmin = localStorage.getItem('isAdmin');
     const handleLogout = async () => {
         await logout();
         navigate('/');
     };
-
     const navigateToServicesSlider = () => {
         const servicesSliderElement = document.getElementById('servicesSlider');
         if (servicesSliderElement) {
           servicesSliderElement.scrollIntoView({ behavior: 'smooth' });
         }
-      };
+    };
 
     const renderLinks = () => {
         return (
@@ -34,7 +32,6 @@ function NavBar() {
                             <Link className='font-veneer cursor-pointer text-white text-xl' to='add-products'>Añadir Producto</Link>
                         </div>
                         <div className='flex gap-2'>
-
                             <div className='rounded-lg bg-primary text-white py-2 px-5 cursor-pointer font-veneer text-xl' onClick={handleLogout}>Salir</div>
                         </div>
                     </div>
@@ -42,11 +39,11 @@ function NavBar() {
                     <div className='col-span-1 md:col-span-2 flex flex-col md:flex-row gap-5 items-center justify-between'>
                         <div className='flex gap-7 md:flex-row items-center pl-0 md:pl-24'>
                             <Link className='font-veneer cursor-pointer text-white text-xl' to='/productsPageAdmin'>Contactenos</Link>
-                            <button className='font-veneer cursor-pointer text-white text-xl'onClick={navigateToServicesSlider}>Menu</button>
+                            <button className='font-veneer cursor-pointer text-white text-xl' onClick={navigateToServicesSlider}>Menu</button>
                         </div>
+                        
                         {isAuthenticated ? (
                             <div className='flex gap-2'>
-
                                 <div className='rounded-lg bg-primary text-white py-2 px-5 cursor-pointer font-veneer' onClick={handleLogout}>Salir</div>
                             </div>
                         ) : (
@@ -57,18 +54,13 @@ function NavBar() {
                                 </div>
                             </div>
                         )}
-
-
                     </div>
                 )}
             </nav>
         );
     };
 
-    return <div>
-        {renderLinks()}
-
-    </div>;
+    return <div>{renderLinks()}</div>;
 }
 
 export default NavBar;

@@ -6,7 +6,11 @@ import HomePage from './pages/HomePage'
 import ProfileAdmin from './pages/admin/ProfileAdmin'
 import { AuthProvider } from './context/authContext';
 import ProductsFormPage from './pages/admin/ProductsFormPage';
-import ProtectedRouted from './ProtectedRouted';
+//Rutas de Proteccion
+import ProtectedRoute from './ProtectedRoute';
+import AdminProtectedRoute from './AdminProtectedRoute'
+//ruta pagina np encontrada
+import NotFoundRoute from './pages/NotFoundRoute'
 import { ProductProvider } from './context/productContext';
 import ProfileUser from './pages/ProfileUser';
 import NavBar from './components/navigation/NavBar';
@@ -15,25 +19,37 @@ function app() {
   return (
     <AuthProvider>
       <ProductProvider>
-      <BrowserRouter>
-      <NavBar />
-        <Routes>
-          
-          <Route path='/' element={<HomePage />}></Route>
-          <Route path='/login' element={<LoginPage />}></Route>
-          <Route path='/register' element={<RegisterPage />}></Route>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
 
-          <Route element={<ProtectedRouted />}>
-            <Route path='/products' element={<ProductsPage />}></Route>
-            <Route path='/add-product' element={<ProductsFormPage />}></Route>
-            <Route path='/product/:id' element={<ProductsFormPage />}></Route>
-            <Route path='/profileUser' element={<ProfileUser />}></Route>
-            <Route path='/profileAdmin' element={<ProfileAdmin />}></Route>
-            <Route path='/productsPageAdmin' element={<ProductsPage />}> </Route>
-          </Route>
-        </Routes>
-      <Footer />
-      </BrowserRouter>
+            <Route path='/' element={<HomePage />}></Route>
+            <Route path='/login' element={<LoginPage />}></Route>
+            <Route path='/register' element={<RegisterPage />}></Route>
+            <Route element={
+              <ProtectedRoute />
+            }>
+              <Route path='/products' element={<ProductsPage />} />
+              <Route path='/profileUser' element={<ProfileUser />} />
+              <Route path='*' element={<NotFoundRoute />} />
+            </Route>
+
+
+            {/* Protección para rutas de administrador */}
+            <Route element={<AdminProtectedRoute />}>
+              <Route path='/productsPageAdmin' element={<ProductsPage />} />
+              <Route path='/add-product' element={<ProductsFormPage />} />
+              <Route path='/product/:id' element={<ProductsFormPage />} />
+              <Route path='/profileAdmin' element={<ProfileAdmin />} />
+              <Route path='*' element={<NotFoundRoute />} />
+            </Route>
+
+
+
+            <Route path='*' element={<NotFoundRoute />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
       </ProductProvider>
     </AuthProvider>
   )

@@ -39,6 +39,7 @@ function NavBar() {
                     <div className='col-span-1 md:col-span-2 flex flex-col md:flex-row gap-5 items-center justify-between'>
                         <div className='flex gap-7 md:flex-row items-center pl-0 md:pl-24'>
                             <Link className='font-veneer cursor-pointer text-white text-xl' to='/productsPageAdmin'>Contactenos</Link>
+                            <Link className='font-veneer cursor-pointer text-white text-xl' to='/'>Ordena Hora</Link>
                             <button className='font-veneer cursor-pointer text-white text-xl' onClick={navigateToServicesSlider}>Menu</button>
                         </div>
                         

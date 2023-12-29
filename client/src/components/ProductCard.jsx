@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 /**
  * 
  * @param {*} param0 
@@ -8,13 +9,13 @@ import { FaShoppingCart } from "react-icons/fa";
 function ProductCard({ product }) {
     return (
         <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-            <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+            <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                 <img className="object-cover" src={product.urlImage} alt="product image" />
-            </a>
+            </div>
             <div className="mt-4 px-5 pb-5">
-                <a href="#">
+                <Link  key={product.id} to={`/product/${product.slug}`}>
                     <h5 className="text-xl tracking-tight text-slate-900 font-veneer">{product.title}</h5>
-                </a>
+                </Link>
                 <div className="mt-2 mb-5 flex items-center justify-between">
                     <p>
                         <span className="text-3xl font-bold text-slate-900">${product.price}</span>
@@ -26,7 +27,7 @@ function ProductCard({ product }) {
                 >
                     <div className='flex gap-2 items-center'>
                         <FaShoppingCart />
-                        <p>Add to cart</p> 
+                        <p>Add to cart</p>
                     </div>
 
                 </a>

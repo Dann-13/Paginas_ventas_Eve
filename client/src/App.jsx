@@ -15,6 +15,7 @@ import { ProductProvider } from './context/productContext';
 import ProfileUser from './pages/ProfileUser';
 import NavBar from './components/navigation/NavBar';
 import Footer from './components/navigation/Footer';
+import ProductPage from './pages/Product/[slug]';
 function app() {
   return (
     <AuthProvider>
@@ -26,6 +27,7 @@ function app() {
             <Route path='/' element={<HomePage />}></Route>
             <Route path='/login' element={<LoginPage />}></Route>
             <Route path='/register' element={<RegisterPage />}></Route>
+            <Route path='/product/:slug' element={<ProductPage />}></Route>
             <Route element={
               <ProtectedRoute />
             }>
@@ -43,9 +45,6 @@ function app() {
               <Route path='/profileAdmin' element={<ProfileAdmin />} />
               <Route path='*' element={<NotFoundRoute />} />
             </Route>
-
-
-
             <Route path='*' element={<NotFoundRoute />} />
           </Routes>
           <Footer />

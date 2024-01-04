@@ -16,78 +16,114 @@ function RegisterPage() {
     });
 
     return (
-        <div class="contain py-48 md:py-28">
 
-            <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
-                {
-                    registerErrors.map((error, i) => (
-                        <div className='bg-red-400 text-white p-2' key={i}> {error} </div>
-                    ))
-                }
-                <h2 class="text-2xl uppercase font-medium mb-1">Registrate</h2>
-                <p class="text-gray-600 mb-6 text-sm">
-                   Bienvenido al Formulario de Registro
-                </p>
-                <form action="#" method="post" onSubmit={onSubmit} >
-                    <div class="space-y-2">
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Username
-                            </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"
-                                {...register('username', { required: true })}
-                            />
-                            {
-                                errors.username && (
-                                    <p className='text-red-400'>Usuario es requerido</p>
-                                )
-                            }
-                        </div>
-                        <div>
-                            <label for="email" class="text-gray-600 mb-2 block">Email address</label>
-                            <input type="email" name="email" id="email"
-                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="youremail.@domain.com"
-                                {...register('email', { required: true })}
-                            />
-                            {
-                                errors.email && (
-                                    <p className='text-red-400'>Email es requerido</p>
-                                )
-                            }
-                        </div>
-                        <div>
-                            <label for="password" class="text-gray-600 mb-2 block">Password</label>
-                            <input type="password" name="password" id="password"
-                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="*******"
-                                {...register('password', { required: true })} />
+        <div className="container mx-auto px-6 py-10 pt-24">
+            <h1 className="mb-4 text-3xl font-bold">Crea Tu Cuenta</h1>
+            <p className="mb-8 text-gray-600">El siguiente formulario le permitirá crear una cuenta de El Corral para realizar sus pedidos de una forma más rápida y personalizada.</p>
+            <form className="grid grid-cols-1 gap-6 md:grid-cols-2" method="post" onSubmit={onSubmit}>
+                <div className="mb-4">
+                    <label htmlFor="document" className="block text-sm font-medium text-gray-600">Número de Documento</label>
+                    <input
+                        type="text"
+                        name="document"
+                        id="document"
+                        className="mt-1 w-full rounded-md border p-2"
+                        {...register('document', { required: true })}
+                    />
+                    {errors.document && (
+                        <p className="text-red-400">El número de documento es requerido</p>
+                    )}
+                </div>
 
-                            {
-                                errors.password && (
-                                    <p className='text-red-400'>Contraseña es requerida</p>
-                                )
-                            }
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between mt-6">
-                        <div class="flex items-center">
-                            <input type="checkbox" name="remember" id="remember"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer" />
-                            <label for="remember" class="text-gray-600 ml-3 cursor-pointer">Remember me</label>
-                        </div>
-                        <a href="#" class="text-primary">Forgot password</a>
-                    </div>
-                    <div class="mt-4">
-                        <button type="submit"
-                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">Registrar</button>
-                    </div>
-                </form>
+                <div className="mb-4">
+                    <label for="nombre" className="block text-sm font-medium text-gray-600">Nombre Completo</label>
+                    <input type="text" name="name" id="name" className="mt-1 w-full rounded-md border p-2"
+                        {...register('name', { required: true })} /> {errors.name && (
+                            <p className="text-red-400">Usuario es requerido</p>
+                        )}
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="cell" className="block text-sm font-medium text-gray-600">Número de Celular</label>
+                    <input
+                        type="text"
+                        name="cell"
+                        id="cell"
+                        className="mt-1 w-full rounded-md border p-2"
+                        {...register('cell', { required: true })}
+                    />
+                    {errors.cell && (
+                        <p className="text-red-400">El número de celular es requerido</p>
+                    )}
+                </div>
 
+                <div className="mb-4">
+                    <label for="inputCiudadLine2" className="block text-sm font-medium text-gray-600">Ciudad</label>
+                    <select class="mt-1 w-full rounded-md border p-2" id="inputCiudadLine2"
+                        {...register('city', { required: true })}>
+                        <option value="">-</option>
+                        <option value="Arauca">Arauca</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Barranquilla">Barranquilla</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Bucaramanga">Bucaramanga</option>
+                        <option value="Cali">Cali</option>
+                        <option value="Cartagena">Cartagena</option>
+                        <option value="Cúcuta">Cúcuta</option>
+                        <option value="Florencia">Florencia</option>
+                        <option value="Ibagué">Ibagué</option>
+                        <option value="Leticia">Leticia</option>
+                        <option value="Manizales">Manizales</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Mitú">Mitú</option>
+                        <option value="Mocoa">Mocoa</option>
+                        <option value="Montería">Montería</option>
+                        <option value="Neiva">Neiva</option>
+                        <option value="Pasto">Pasto</option>
+                        <option value="Pereira">Pereira</option>
+                        <option value="Popayán">Popayán</option>
+                        <option value="Puerto Carreño">Puerto Carreño</option>
+                        <option value="Puerto Inírida">Puerto Inírida</option>
+                        <option value="Quibdó">Quibdó</option>
+                        <option value="Riohacha">Riohacha</option>
+                        <option value="San Andrés">San Andrés</option>
+                        <option value="San José del Guaviare">San José del Guaviare</option>
+                        <option value="Santa Marta">Santa Marta</option>
+                        <option value="Sincelejo">Sincelejo</option>
+                        <option value="Tunja">Tunja</option>
+                        <option value="Valledupar">Valledupar</option>
+                        <option value="Villavicencio">Villavicencio</option>
+                        <option value="Yopal">Yopal</option>
+                    </select>
+                    {errors.city && (
+                        <p className="text-red-400">La ciudad es requerida</p>
+                    )}
+                </div>
+                <div className="mb-4">
+                    <label for="address" class="block text-sm font-medium text-gray-600">Direccion</label>
+                    <input type="text" name="address" id="address" className="mt-1 w-full rounded-md border p-2"
+                        {...register('address', { required: true })} /> {errors.address && (
+                            <p className="text-red-400">La direccion es requerida es requerido</p>
+                        )}
+                </div>
 
-                <p class="mt-4 text-center text-gray-600">Don't have account?
-                    <Link to={"/loguin"}>Ingresa Ahora</Link></p>
-            </div>
+                <div className="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-600">Correo</label>
+                    <input type="email" name="email" id="email" className="mt-1 w-full rounded-md border p-2"
+                        {...register('email', { required: true })} /> {errors.email && (
+                            <p className="text-red-400">Email es requerido</p>
+                        )}
+                </div>
+                <div className="mb-4">
+                    <label for="contrasena" className="block text-sm font-medium text-gray-600">Contraseña</label>
+                    <input type="password" name="password" id="password" className="mt-1 w-full rounded-md border p-2"
+                        {...register('password', { required: true })} /> {errors.password && (
+                            <p className="text-red-400">Contraseña es requerida</p>
+                        )}
+                </div>
+                <div>
+                    <button type="submit" className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Enviar</button>
+                </div>
+            </form>
         </div>
 
     )

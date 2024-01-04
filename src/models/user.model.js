@@ -3,11 +3,32 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    username: {
+    document:{
+        type:String,
+        require: true,
+        trim: true
+    },
+    
+    name: {
         type: String,
         require: true,
         trim: true
 
+    },
+    cell:{
+        type:String,
+        require:true,
+        trim:true
+    },
+    city:{
+        type:String,
+        require:true,
+        trim:true
+    },
+    address:{
+        type:String,
+        require:true,
+        trim:true
     },
     email: {
         type: String,

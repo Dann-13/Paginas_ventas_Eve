@@ -4,14 +4,19 @@ import { createAccessToken } from '../libs/jwt.js'
 import jwt from 'jsonwebtoken';
 import {TOKEN_SECRET } from '../config.js';
 export const register = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { document, name, cell, city, address, email, password } = req.body;
+    console.log(document)
 
     try {
         const userFound = await User.findOne({ email })
         if (userFound) return res.status(400).json(["el correo ya existe"])
         const passwordHash = await bcrypt.hash(password, 10);
         const newUser = new User({
-            username,
+            document,
+            name,
+            cell,
+            city,
+            address,
             email,
             passwordHash
         });
@@ -23,7 +28,7 @@ export const register = async (req, res) => {
             res.cookie("token", token);
             res.json({
                 id: userSaved.id,
-                username: userSaved.username,
+                username: userSaved.name,
                 email: userSaved.email
             });
         } catch (saveError) {
@@ -52,7 +57,7 @@ export const login = async (req, res) => {
         res.cookie("token", token);
         res.json({
             id: userFound.id,
-            username: userFound.username,
+            username: userFound.name,
             email: userFound.email,
             isAdmin: userFound.isAdmin
         });
@@ -73,7 +78,7 @@ export const profile = async (req, res) => {
     if (!userFound) return res.status(400).json({ message: "user not found" });
     return res.json({
         id: userFound.id,
-        username: userFound.username,
+        username: userFound.name,
         email: userFound.email
 
     });
@@ -84,7 +89,7 @@ export const profileAdmin = async (req, res) => {
     if (!userFound) return res.status(400).json({ message: "user not found" });
     return res.json({
         id: userFound.id,
-        username: userFound.username,
+        username: userFound.name,
         email: userFound.email
 
     });
@@ -103,7 +108,7 @@ export const verifyToken = async (req, res) => {
 
         return res.json({
             id: userFound._id,
-            username: userFound.username,
+            username: userFound.name,
             email: userFound.email,
         });
     });

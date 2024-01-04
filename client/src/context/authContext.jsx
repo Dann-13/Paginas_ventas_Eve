@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
 
     // Función asincrónica para el registro de usuarios.
     const signup = async (user) => {
+        console.log(user)
         try {
             // Realiza una solicitud de registro utilizando la función registerRequest.
             const res = await registerRequest(user)

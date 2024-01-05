@@ -11,7 +11,7 @@ export const registerSchema = z.object({
     cell: z.string({
         required_error: "El número de celular es obligatorio",
     }).min(10, {
-        message: "El documento de celular debe tener al menos 10 caracteres",
+        message: "El celular debe tener al menos 10 caracteres",
     }),
     city: z.string({
         required_error: "La ciudad es obligatoria",

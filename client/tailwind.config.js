@@ -19,6 +19,9 @@ export default {
         veneer: ['VeneerTwo', 'sans-serif'],
         nunito: ['Nunito', 'sans-serif'],
       },
+      colors: {
+        'primary': '#D52F1F',
+      },
     },
   },
 }

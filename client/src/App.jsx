@@ -13,7 +13,7 @@ import AdminProtectedRoute from './AdminProtectedRoute'
 import NotFoundRoute from './pages/NotFoundRoute'
 import { ProductProvider } from './context/productContext';
 import ProfileUser from './pages/ProfileUser';
-import NavBar from './components/navigation/NavBar';
+import NavBar from './components/navigation/NavBar/NavBar';
 import Footer from './components/navigation/Footer';
 import ProductPage from './pages/Product/[slug]';
 function app() {
@@ -45,7 +45,7 @@ function app() {
               <Route path='/profileAdmin' element={<ProfileAdmin />} />
               <Route path='*' element={<NotFoundRoute />} />
             </Route>
-            <Route path='*' element={<NotFoundRoute />} />
+            <Route path='/not-found' element={<NotFoundRoute />} />
           </Routes>
           <Footer />
         </BrowserRouter>

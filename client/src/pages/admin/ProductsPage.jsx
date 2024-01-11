@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import ProductHeader from '../../components/sections/ProductHeader';
 import { useProduct } from '../../context/productContext';
-import ProductDetails from '../../components/productDetails/ProductDetails';
+import ProductDetails from '../../components/productDetailsAdmin/ProductDetails';
 
 function ProductsPage() {
   const {getProducts, products} = useProduct();

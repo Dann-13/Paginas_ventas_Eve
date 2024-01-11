@@ -1,12 +1,15 @@
 import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import {useAuth} from '../context/authContext'
 /**
  * 
  * @param {*} param0 
  * @returns 
  */
 function ProductCard({ product }) {
+    const {isAuthenticated} = useAuth();
+    console.log(isAuthenticated)
     return (
         <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
@@ -21,8 +24,8 @@ function ProductCard({ product }) {
                         <span className="text-3xl font-bold text-slate-900">${product.price}</span>
                     </p>
                 </div>
-                <a
-                    href="#"
+                <div
+                    
                     className="flex items-center justify-center rounded-md bg-brownPrimary px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                 >
                     <div className='flex gap-2 items-center'>
@@ -30,7 +33,7 @@ function ProductCard({ product }) {
                         <p>Add to cart</p>
                     </div>
 
-                </a>
+                </div>
             </div>
         </div>
 

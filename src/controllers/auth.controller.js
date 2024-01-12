@@ -59,7 +59,9 @@ export const login = async (req, res) => {
             id: userFound.id,
             username: userFound.name,
             email: userFound.email,
-            isAdmin: userFound.isAdmin
+            isAdmin: userFound.isAdmin,
+            cell: userFound.cell
+            
         });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -79,7 +81,8 @@ export const profile = async (req, res) => {
     return res.json({
         id: userFound.id,
         username: userFound.name,
-        email: userFound.email
+        email: userFound.email,
+        cell: userFound.cell
 
     });
     res.send("Profile");
@@ -110,6 +113,10 @@ export const verifyToken = async (req, res) => {
             id: userFound._id,
             username: userFound.name,
             email: userFound.email,
+            cell: userFound.cell,
+            city: userFound.city,
+            address: userFound.address,
+            document: userFound.document
         });
     });
 };

@@ -4,6 +4,7 @@ import CarouselSlides from '../components/navigation/CarouselSlides'
 import { useProduct } from '../context/productContext'
 import ProductHeader from '../components/sections/ProductHeader';
 import ServicesSlider from '../components/sections/ServicesSlider';
+import About from '../components/sections/About';
 function HomePage() {
   const { getProducts, products } = useProduct();
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -41,6 +42,7 @@ function HomePage() {
       </div>
       <ProductHeader title={"¡Revisa Nuesto Menu!"} />
       <ServicesSlider />
+      <About />
 
     </div>
   )

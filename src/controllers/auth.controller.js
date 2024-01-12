@@ -56,11 +56,15 @@ export const login = async (req, res) => {
 
         res.cookie("token", token);
         res.json({
-            id: userFound.id,
+            iid: userFound._id,
             username: userFound.name,
             email: userFound.email,
+            cell: userFound.cell,
+            city: userFound.city,
+            address: userFound.address,
+            document: userFound.document,
             isAdmin: userFound.isAdmin,
-            cell: userFound.cell
+            
             
         });
     } catch (err) {

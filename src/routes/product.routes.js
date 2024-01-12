@@ -6,7 +6,7 @@ import { createProductSchema } from '../schemas/product.schemas.js'
 const router = Router();
 
 router.get('/products', getProducts);
-router.get('/product/:id', getProduct);
+router.get('/product/:slug', getProduct);
 router.post('/product', authRequired, validateSchema(createProductSchema), createProduct);
 router.delete('/product/:id', authRequired, deleteProduct);
 router.put('/product/:id', authRequired, updateProduct);

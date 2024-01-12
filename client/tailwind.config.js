@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+import ViteFonts from 'vite-plugin-fonts'
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  
   theme: {
     extend: {
       backgroundColor: {
@@ -24,5 +26,17 @@ export default {
       },
     },
   },
+  plugins: [
+    ViteFonts({
+      google: {
+        families: [
+          {
+            name: 'Rubik',
+            styles: '400,500',
+          },
+        ],
+      },
+    }),
+  ],
 }
 

@@ -50,10 +50,11 @@ export function ProductProvider({ children }) {
             }
         }
     }
-    const getProduct = async (id) => {
+    const getProduct = async (slug) => {
         try {
-            const res = await getProductRequest(id);
-            return res.data;
+            
+            const res = await getProductRequest(slug);
+            setProduct(res.data);
         } catch (error) {
             console.log(error)
 

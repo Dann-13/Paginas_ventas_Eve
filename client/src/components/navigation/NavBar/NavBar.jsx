@@ -55,8 +55,8 @@ function NavBar() {
                         ) : (
                             <div>
                                 <div className='flex gap-2'>
-                                    <Link to='/login' className='rounded-lg bg-gray-400 text-white py-2 px-5 cursor-pointer font-veneer'>Iniciar Sesion</Link>
-                                    <Link to='/register' className='rounded-lg bg-primary text-white py-2 px-5 cursor-pointer font-veneer'>Registro</Link>
+                                    
+                                    <Link to='/login' className='rounded-lg bg-primary text-white py-2 px-5 cursor-pointer font-veneer'>Iniciar Sesion</Link>
                                 </div>
                             </div>
                         )}

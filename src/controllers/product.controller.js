@@ -33,14 +33,14 @@ export const createProduct = async (req, res) => {
 };
 export const getProduct = async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id);
+        const product = await Product.findOne({ slug: req.params.slug });
+        console.log("Product from DB:", product); // Añade este log
         if (!product) return res.status(404).json({ message: 'producto no encontrado' });
         res.json(product);
-    }catch(error){
-        console.log(error)
+    } catch (error) {
+        console.log("Error fetching product:", error); // Añade este log
+        res.status(500).json({ message: 'Error interno del servidor' });
     }
-
-    
 };
 
 export const deleteProduct = async (req, res) => {

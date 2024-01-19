@@ -5,6 +5,7 @@ import { useProduct } from '../context/productContext'
 import ProductHeader from '../components/sections/ProductHeader';
 import ServicesSlider from '../components/sections/ServicesSlider';
 import About from '../components/sections/About';
+import Testimonials from '../components/sections/Testimonials';
 function HomePage() {
   const { getProducts, products } = useProduct();
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -43,6 +44,7 @@ function HomePage() {
       <ProductHeader title={"¡Revisa Nuesto Menu!"} />
       <ServicesSlider />
       <About />
+      <Testimonials />
 
     </div>
   )

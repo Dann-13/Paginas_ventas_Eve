@@ -23,20 +23,21 @@ export default function About() {
                     initial="hidden"
                     animate={inView ? "show" : "hidden"}
                     className="text-4xl py-2 font-semibold"><span className="text-redprimary">FlashFood:</span>  Sabores Exquisitos Entregados en el Momento y Lugar Justo</motion.h1>
-                <motion.p 
-                 variants={fadeIn("up", 0.7)}
-                 initial="hidden"
-                 animate={inView ? "show" : "hidden"}>
+                <motion.p
+                    variants={fadeIn("up", 0.7)}
+                    initial="hidden"
+                    animate={inView ? "show" : "hidden"}>
                     En FlashFood, entendemos que la buena comida es más que solo sabor; es una experiencia. Ofrecemos momentos de sabor excepcional, entregados justo cuando y donde los necesitas.
 
                     ¡Haz tu pedido ahora y deja que FlashFood lleve la delicia a tu puerta!
                 </motion.p>
             </div>
             <motion.div
-             variants={fadeIn("left", 0.7)}
-             initial="hidden"
-             animate={inView ? "show" : "hidden"}>
-                <Boy width="500" height="400" />
+                variants={fadeIn("left", 0.7)}
+                initial="hidden"
+                animate={inView ? "show" : "hidden"}
+                className="md:w-[1200px]">
+                <Boy />
             </motion.div>
         </div>
     )

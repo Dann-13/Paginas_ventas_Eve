@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import Boy from "../icons/Boy";
+//import framer-motion
+import { motion } from 'framer-motion'
+import { fadeIn } from '../../variants/variants'
+//import useInView react-intersection-observer
+import { useInView } from 'react-intersection-observer';
+
 export default function About() {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+    });
+    useEffect(() => {
+        if (inView) {
+            // La animación se activará cuando el componente esté visible
+        }
+    }, [inView]);
     return (
-        <div>
+        <div ref={ref} className=" flex flex-col px-5 py-12 md:px-16 md:flex-row items-center">
             <div>
-                <h1 className="">FlashFood: Sabores Exquisitos Entregados en el Momento y Lugar Justo</h1>
-                <p>
+                <motion.h1
+                    variants={fadeIn("down", 0.7)}
+                    initial="hidden"
+                    animate={inView ? "show" : "hidden"}
+                    className="text-4xl py-2 font-semibold"><span className="text-redprimary">FlashFood:</span>  Sabores Exquisitos Entregados en el Momento y Lugar Justo</motion.h1>
+                <motion.p 
+                 variants={fadeIn("up", 0.7)}
+                 initial="hidden"
+                 animate={inView ? "show" : "hidden"}>
                     En FlashFood, entendemos que la buena comida es más que solo sabor; es una experiencia. Ofrecemos momentos de sabor excepcional, entregados justo cuando y donde los necesitas.
 
-                    Nuestros restaurantes en Pasto están aquí para satisfacer los paladares locales y ofrecer autenticidad y frescura en cada bocado. Ya sea que estés buscando la comodidad de la cocina local o deseando explorar nuevos sabores, FlashFood es tu destino culinario.
-
-                    Ordena ahora y descubre por qué nuestros platos son el equilibrio perfecto entre tradición y modernidad. FlashFood, donde cada bocado es una celebración de los sabores únicos de nuestra ciudad.
-
                     ¡Haz tu pedido ahora y deja que FlashFood lleve la delicia a tu puerta!
-                </p>
+                </motion.p>
             </div>
-            <div>
-                <img src="" alt="" />
-            </div>
+            <motion.div
+             variants={fadeIn("left", 0.7)}
+             initial="hidden"
+             animate={inView ? "show" : "hidden"}>
+                <Boy width="500" height="400" />
+            </motion.div>
         </div>
     )
 }

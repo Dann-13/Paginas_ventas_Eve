@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import ViteFonts from 'vite-plugin-fonts'
 export default {
   content: [
     "./index.html",
@@ -15,6 +14,7 @@ export default {
 
       textColor: {
         'primary': '#111827',
+        'redprimary': '#D52F1F',
         'brownPrimary': '#3E2420'
       },
       fontFamily: {
@@ -26,17 +26,6 @@ export default {
       },
     },
   },
-  plugins: [
-    ViteFonts({
-      google: {
-        families: [
-          {
-            name: 'Rubik',
-            styles: '400,500',
-          },
-        ],
-      },
-    }),
-  ],
+
 }
 

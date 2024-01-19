@@ -54,5 +54,16 @@
   background-color: #ff0000; 
 }
 
+  /* Animacion para la imagen about */
+.leftToRightAnimation {
+  animation: leftToRight 2s ease-in-out infinite alternate;
+}
 
-
+@keyframes leftToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(20px); /* Ajusta la distancia según tus necesidades */
+  }
+}

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { createProductRequest, getProductsRequest, deleteProductRequest, getProductRequest, updateProductRequest } from '../api/products'
+import { createProductRequest, getProductsRequest, deleteProductRequest, getProductRequest, updateProductRequest, getProductRequestId } from '../api/products'
 const ProductContext = createContext();
 export const useProduct = () => {
     const context = useContext(ProductContext);
@@ -50,9 +50,26 @@ export function ProductProvider({ children }) {
             }
         }
     }
+    //sirve para buscar el producto con el id, en este caso quien lo usa es el admin cuando va a actualizar los datos de un producto
+    const getProductId = async (id) => {
+        try {
+            const res = await getProductRequestId(id);
+            console.log(res.data)
+            if (res.data) {
+                return res.data;
+            } else {
+                console.warn('Producto no encontrado');
+                // Puedes manejar el caso en que el producto no se encuentre, por ejemplo, lanzando un error o devolviendo un valor específico.
+            }
+        } catch (error) {
+            console.error('Error al obtener el producto por ID:', error);
+            // Puedes manejar el error según tus necesidades, como mostrando un mensaje de error o redirigiendo a una página de error.
+        }
+    };
+
     const getProduct = async (slug) => {
         try {
-            
+
             const res = await getProductRequest(slug);
             setProduct(res.data);
         } catch (error) {
@@ -60,6 +77,7 @@ export function ProductProvider({ children }) {
 
         }
     }
+
     const updateProduct = async (id, product) => {
         try {
             await updateProductRequest(id, product);
@@ -76,7 +94,8 @@ export function ProductProvider({ children }) {
             getProducts,
             deleteProduct,
             getProduct,
-            updateProduct
+            updateProduct,
+            getProductId
         }}>
             {children}
         </ProductContext.Provider>

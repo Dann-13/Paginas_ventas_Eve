@@ -4,8 +4,9 @@ import { useProduct } from '../context/productContext';
 import { useParams } from 'react-router-dom';
 
 function IngredientsForm({ register }) {
+    const [dataLoaded, setDataLoaded] = useState(false);
     // Obtención de funciones y datos necesarios mediante hooks
-    const { getProduct } = useProduct(); // Usamos el contexto del producto para obtener información de un producto
+    const { getProductId } = useProduct(); // Usamos el contexto del producto para obtener información de un producto
     const params = useParams(); // Hook de react-router para obtener parámetros de la URL con este se espera saber cuando si es necesario cargar los datos para su edicion
     const { control } = useForm(); // Hook de react-hook-form para gestionar el formulario
     const { fields, append, remove } = useFieldArray({
@@ -18,17 +19,23 @@ function IngredientsForm({ register }) {
     useEffect(() => {
         async function loadProduct() {
             if (params.id) {
-                const product = await getProduct(params.id);
-
-                // Verificar si hay ingredientes antes de establecer el estado
-                if (product.ingredients && product.ingredients.length > 0) {
-                    setIngredientData(product.ingredients);
+                try {
+                    const product = await getProductId(params.id);
+    
+                    // Verificar si hay ingredientes antes de establecer el estado
+                    if (product && product.ingredients && product.ingredients.length > 0) {
+                        setIngredientData(product.ingredients);
+                        setDataLoaded(true);
+                    }
+                } catch (error) {
+                    // Manejar el error, por ejemplo, mostrando un mensaje al usuario
+                    console.error('Error al cargar el producto:', error.message);
                 }
             }
         }
 
         loadProduct();
-    }, [getProduct, params.id]);
+    }, [getProductId, params.id]);
 
     // Efecto para prellenar campos del formulario cuando ingredientData se actualiza y fields está vacío
     useEffect(() => {
@@ -52,6 +59,17 @@ function IngredientsForm({ register }) {
     const handleQuitarCampo = (index) => {
         remove(index);
     };
+
+    if (!dataLoaded) {
+        return (
+          <div className='pt-32 flex justify-center items-center'>
+            <div className="relative">
+              <div className="w-20 h-20 border-purple-200 border-2 rounded-full"></div>
+              <div className="w-20 h-20 border-primary border-t-2 animate-spin rounded-full absolute left-0 top-0"></div>
+            </div>
+          </div>
+        );
+      }
 
     // Renderización del formulario y campos dinámicos
     return (

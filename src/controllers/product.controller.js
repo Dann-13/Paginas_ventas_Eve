@@ -34,7 +34,7 @@ export const createProduct = async (req, res) => {
 export const getProduct = async (req, res) => {
     try {
         const product = await Product.findOne({ slug: req.params.slug });
-        console.log("Product from DB:", product); // Añade este log
+        console.log("Product from DB estas:", product); // Añade este log
         if (!product) return res.status(404).json({ message: 'producto no encontrado' });
         res.json(product);
     } catch (error) {
@@ -42,18 +42,35 @@ export const getProduct = async (req, res) => {
         res.status(500).json({ message: 'Error interno del servidor' });
     }
 };
+export const getProductId = async (req, res) => {
+    try {
+        console.log('Buscando producto por ID:', req.params.id);
+        const product = await Product.findById(req.params.id);
+
+        if (!product) {
+            console.warn('Producto no encontrado');
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+
+        //console.log('Producto encontrado:', product);
+        res.json(product);
+    } catch (error) {
+        console.error('Error al obtener el producto por ID:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
 
 export const deleteProduct = async (req, res) => {
     try {
-      const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-      if (!deletedProduct)
-        return res.status(404).json({ message: "Product not found" });
-  
-      return res.sendStatus(204);
+        const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+        if (!deletedProduct)
+            return res.status(404).json({ message: "Product not found" });
+
+        return res.sendStatus(204);
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+        return res.status(500).json({ message: error.message });
     }
-  };
+};
 export const updateProduct = async (req, res) => {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true //para que me de el dato nuevo no el viejo

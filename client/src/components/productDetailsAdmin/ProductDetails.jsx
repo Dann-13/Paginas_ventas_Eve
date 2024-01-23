@@ -3,6 +3,9 @@ import { useProduct } from '../../context/productContext'
 import { Link } from 'react-router-dom';
 
 function ProductDetails({ product }) {
+    if (!product) {
+        return <div>Cargando producto...</div>;
+      }
     const {deleteProduct} = useProduct();
     return (
 
@@ -29,7 +32,7 @@ function ProductDetails({ product }) {
                     </div>
 
                     <div className='flex justify-between gap-2 items-center'>
-                        <Link to={`/product/${product._id}`} className='bg-green-400 rounded-lg py-2 px-3'  >Editar</Link>
+                        <Link to={`/productUpdate/${product._id}`} className='bg-green-400 rounded-lg py-2 px-3'  >Editar</Link>
                         <button className='bg-red-400 rounded-lg py-2 px-3'
                             onClick={
                                 () => {

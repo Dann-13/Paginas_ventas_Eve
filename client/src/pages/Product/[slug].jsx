@@ -6,7 +6,6 @@ function ProductPage() {
     const [dataLoaded, setDataLoaded] = useState(false);
     const { slug } = useParams();
     useEffect(() => {
-        console.log("Slug changed:", slug);
         const fetchData = async () => {
             try {
                 await getProduct(slug);
@@ -16,10 +15,11 @@ function ProductPage() {
                 // Agrega lógica para manejar el error, como mostrar un mensaje al usuario
             }
         };
-    
+
         fetchData();
     }, [slug]);
-    
+    console.log(product)
+
 
     if (!dataLoaded) {
         return (
@@ -33,9 +33,47 @@ function ProductPage() {
     }
 
     return (
-        <div className="pt-24">
-            <p>{product.description}</p>
+        <div className="pt-10 md:pt-32">
+            <div className="flex flex-col justify-center items-center md:flex-row">
+                <div className="w-full md:w-[50%] h-auto md:px-8">
+                    <img
+                        className="w-full h-auto object-cover rounded-md"
+                        src={product.urlImage}
+                        alt="Descripción de la imagen"
+                    />
+                </div>
+                <div className="py-8 flex flex-col justify-center w-full md:w-[50%] md:px-4">
+                    <h1 className="font-veneer text-3xl md:text-4xl text-center">{product.title}</h1>
+                    <h3 className="text-xl md:text-2xl font-medium py-3">Descripción</h3>
+                    <p className="text-sm md:text-base">
+                        {product.description}
+                    </p>
+                    <div className="flex items-center justify-between py-3">
+                        <h3 className="text-md md:text-lg font-medium">Ingredientes</h3>
+                        <h3 className="text-md md:text-lg font-medium">Cantidad</h3>
+                    </div>
+                    <div>
+                        {product.ingredients.map((item, index) => (
+                            <div className="flex justify-between" key={index}>
+                                <p className="text-sm md:text-base">{item.name}</p>
+                                <p className="text-sm md:text-base">{item.amount}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <p className="text-lg md:text-3xl font-veneer text-redprimary py-3 text-center">${product.price}</p>
+                    <div className="flex flex-col items-center">
+                        <p className="text-xs">Puedes ordenar hasta 20 productos.</p>
+                        <div className="py-3 pb-3 flex items-center space-x-3">
+                            <button className="border py-2 px-3 rounded-md hover:bg-green-400 cursor-pointer">+</button>
+                            <button className="py-2 px-3 border rounded-md">1</button>
+                            <button className="border py-2 px-3 rounded-md hover:bg-primary">-</button>
+                        </div>
+                        <button className="border rounded-lg text-lg bg-primary p-2 font-veneer text-white">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
     )
 }
 export default ProductPage;

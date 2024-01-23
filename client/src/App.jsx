@@ -40,8 +40,8 @@ function app() {
             {/* Protección para rutas de administrador */}
             <Route element={<AdminProtectedRoute />}>
               <Route path='/productsPageAdmin' element={<ProductsPage />} />
-              <Route path='/add-product' element={<ProductsFormPage />} />
-              <Route path='/product/:id' element={<ProductsFormPage />} />
+              <Route path='/add-products' element={<ProductsFormPage />} />
+              <Route path='/productUpdate/:id' element={<ProductsFormPage />} />
               <Route path='/profileAdmin' element={<ProfileAdmin />} />
               <Route path='*' element={<NotFoundRoute />} />
             </Route>

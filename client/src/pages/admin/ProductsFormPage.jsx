@@ -7,27 +7,44 @@ import { useNavigate, useParams } from 'react-router-dom'
 const ProductsFormPage = () => {
   // Extraer funciones útiles de react-hook-form y del contexto de productos
   const { register, handleSubmit, setValue } = useForm();
-  const { createProduct, getProduct, updateProduct } = useProduct();
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const { createProduct, getProductId, updateProduct } = useProduct();
   const navigate = useNavigate();
   const params = useParams();
   useEffect(() => {
-
-
     async function loadProduct() {
-      if (params.id) {
-        const product = await getProduct(params.id);
-        
-        setValue('title', product.title);
-        setValue('description', product.description)
-        setValue('urlImage', product.urlImage);
-        setValue('price', product.price)
-        setValue('quantity', product.quantity);
-        setValue('category', product.category);
-        setValue('ingredients', product.ingredients)
+      try {
+        console.log(params.id);
+  
+        if (params.id) {
+          const product = await getProductId(params.id);
+
+          // Verifica si product está definido antes de intentar acceder a sus propiedades
+          if (product) {
+            setValue('title', product.title);
+            setValue('description', product.description);
+            setValue('urlImage', product.urlImage);
+            setValue('price', product.price);
+            setValue('quantity', product.quantity);
+            setValue('category', product.category);
+            setValue('ingredients', product.ingredients);
+            setDataLoaded(true);
+          } else {
+            console.warn('Producto no encontrado');
+            // Puedes manejar el caso en que el producto no se encuentre, por ejemplo, redirigiendo a una página de error.
+          }
+        }
+      } catch (error) {
+        // Manejo de errores: puedes mostrar un mensaje de error o registrar el error
+        console.error('Error al cargar el producto:', error.message);
+        // Puedes redirigir a una página de error o hacer algo más según tus necesidades
       }
     }
+  
     loadProduct();
-  }, [params.id])
+  },[]);
+  
+  
 
   // Función que se ejecuta al enviar el formulario
   const onSubmit = handleSubmit((data) => {
@@ -39,6 +56,16 @@ const ProductsFormPage = () => {
     navigate('/productsPageAdmin');
   });
 
+  if (!dataLoaded) {
+    return (
+      <div className='pt-32 flex justify-center items-center'>
+        <div className="relative">
+          <div className="w-20 h-20 border-purple-200 border-2 rounded-full"></div>
+          <div className="w-20 h-20 border-primary border-t-2 animate-spin rounded-full absolute left-0 top-0"></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className='pt-40 lg:pt-14'>
       <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
@@ -121,8 +148,8 @@ const ProductsFormPage = () => {
                     </div>
                     <div>
                       <label className="leading-loose">Ingredientes:</label>
-                      <IngredientsForm 
-                      register={register}
+                      <IngredientsForm
+                        register={register}
                       />
                     </div>
 

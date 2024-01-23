@@ -22,7 +22,7 @@ export default function About() {
                     variants={fadeIn("down", 0.7)}
                     initial="hidden"
                     animate={inView ? "show" : "hidden"}
-                    className="text-4xl py-2 font-semibold"><span className="text-redprimary">FlashFood:</span>  Sabores Exquisitos Entregados en el Momento y Lugar Justo</motion.h1>
+                    className="text-4xl py-2 font-semibold"><span className="text-redprimary font-veneer font-medium">FlashFood:</span>  Sabores Exquisitos Entregados en el Momento y Lugar Justo</motion.h1>
                 <motion.p
                     variants={fadeIn("up", 0.7)}
                     initial="hidden"

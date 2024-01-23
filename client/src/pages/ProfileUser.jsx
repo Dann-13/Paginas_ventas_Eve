@@ -4,7 +4,7 @@ function ProfileUser() {
   const { user } = useAuth();
   console.log(user)
   return (
-    <div className='pt-56 md:pt-32 px-5 md:px-10 lg:px-32 flex flex-col md:flex-row justify-center gap-3'>
+    <div className='pt-52 md:pt-24 px-5 md:px-10 lg:px-32 flex flex-col md:flex-row justify-center gap-3'>
       <div className='flex flex-col justify-center w-full md:w-1/2'>
         <p className='text-3xl text-center'>Bienvenido, {user.username}!</p>
         <p className='pt-2'>

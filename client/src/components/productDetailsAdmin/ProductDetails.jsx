@@ -23,13 +23,6 @@ function ProductDetails({ product }) {
                             <span className="text-3xl font-bold text-slate-900">${product.price}</span>
                         </p>
                     </div>
-                    <div className='py-3'>
-                        <p>
-                            <span className='font-medium'>
-                                {product.description}
-                            </span>
-                        </p>
-                    </div>
 
                     <div className='flex justify-between gap-2 items-center'>
                         <Link to={`/productUpdate/${product._id}`} className='bg-green-400 rounded-lg py-2 px-3'  >Editar</Link>

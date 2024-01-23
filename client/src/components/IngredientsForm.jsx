@@ -31,6 +31,9 @@ function IngredientsForm({ register }) {
                     // Manejar el error, por ejemplo, mostrando un mensaje al usuario
                     console.error('Error al cargar el producto:', error.message);
                 }
+            }else{
+                //Aclarando: cambiamos el estado de carga para que el formulario se muestre, en este caso es para añadir un poducto
+                setDataLoaded(true)
             }
         }
 
@@ -75,7 +78,7 @@ function IngredientsForm({ register }) {
     return (
         <div>
             <div className="flex justify-center items-center">
-                <div className="bg-white p-2 w-full rounded shadow-md">
+                <div className="bg-white p-2 w-full">
                     {/* Mapeo de campos dinámicos */}
                     {fields.map((field, index) => (
                         <div key={field.id} className="mb-4">

@@ -5,26 +5,33 @@ import { useProduct } from '../../context/productContext';
 import ProductDetails from '../../components/productDetailsAdmin/ProductDetails';
 
 function ProductsPage() {
-  const {getProducts, products} = useProduct();
+  const { getProducts, products } = useProduct();
   const [dataLoaded, setDataLoaded] = useState();
   useEffect(() => {
-      const fetchData = async () => {
-          if(!dataLoaded){
-              await getProducts();
-              setDataLoaded(true);
-          }
-      };
-      fetchData();
-      
-  },[dataLoaded, getProducts]);
-  if (!dataLoaded){
-      return <div>Cargando Productos</div>
+    const fetchData = async () => {
+      if (!dataLoaded) {
+        await getProducts();
+        setDataLoaded(true);
+      }
+    };
+    fetchData();
+
+  }, [dataLoaded, getProducts]);
+  if (!dataLoaded) {
+    return (
+      <div className='pt-32 flex justify-center items-center'>
+        <div className="relative">
+          <div className="w-20 h-20 border-purple-200 border-2 rounded-full"></div>
+          <div className="w-20 h-20 border-primary border-t-2 animate-spin rounded-full absolute left-0 top-0"></div>
+        </div>
+      </div>
+    )
   }
   return (
     <div className='pt-40 lg:pt-24'>
       <ProductHeader title={"¡Adminstra Los Productos!"} />
       <div className='flex justify-end pr-10'>
-          <Link className='rounded-lg py-2 px-3 bg-[#F5EBD4] font-veneer leading-5 text-lg' to={'/add-product'}>Añadir Productos</Link>
+        <Link className='rounded-lg py-2 px-3 bg-[#F5EBD4] font-veneer leading-5 text-lg' to={'/add-product'}>Añadir Productos</Link>
       </div>
       <div className="grid grid-cols-1 py-5 px-2 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 lg:px-20">
         {products.map((product) => (

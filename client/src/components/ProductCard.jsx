@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaShoppingCart, FaStar } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext'
 /**
  * 
@@ -8,8 +8,17 @@ import { useAuth } from '../context/authContext'
  * @returns 
  */
 function ProductCard({ product }) {
+    const navigate = useNavigate();
     const { isAuthenticated } = useAuth();
     console.log(isAuthenticated)
+    const handleClick = (event) =>{
+        event.preventDefault();
+        if(isAuthenticated){
+            console.log("Autenticado")
+        }else{
+            navigate('/login')
+        }
+    }
     return (
         <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <Link key={product.id} to={`/product/${product.slug}`}
@@ -32,9 +41,9 @@ function ProductCard({ product }) {
                         <FaStar className='text-yellow-400' />
                     </div>
                 </div>
-                <a href="#" className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                <Link to="" onClick={handleClick} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                     
-                    Add to cart</a>
+                    Add to cart</Link>
             </div>
         </div>
 

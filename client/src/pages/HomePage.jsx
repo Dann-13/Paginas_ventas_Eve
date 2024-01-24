@@ -19,36 +19,33 @@ function HomePage() {
 
     fetchData();
   }, [dataLoaded, getProducts]);
-
-  if (!dataLoaded) {
-    return (
-      <div className='pt-32 flex justify-center items-center'>
-        <div className="relative">
-          <div className="w-20 h-20 border-purple-200 border-2 rounded-full"></div>
-          <div className="w-20 h-20 border-primary border-t-2 animate-spin rounded-full absolute left-0 top-0"></div>
-        </div>
-      </div>
-    );
-  }
-
-
   return (
     <div className='bg-[#FBECDA] '>
       <CarouselSlides />
       <ProductHeader title={'¡Lo Nuevo!'} />
-      <div className="grid grid-cols-1 py-5 sm:grid-cols-2 md:grid-cols-3 md:px-20 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-        {products.map((product) => (
-          <div key={product._id} className="flex justify-center">
-            <ProductCard product={product} />
+      {/* Esperando datos de los productos, si llegan se enseñan las card si no el spiner de carga */}
+      {
+        dataLoaded ? (
+          <div className="grid grid-cols-1 py-5 sm:grid-cols-2 md:grid-cols-3 md:px-20 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+            {products.map((product) => (
+              <div key={product._id} className="flex justify-center">
+                <ProductCard product={product} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
+        ) : (
+          <div className='pt-32 flex justify-center items-center'>
+            <div className="relative">
+              <div className="w-20 h-20 border-purple-200 border-2 rounded-full"></div>
+              <div className="w-20 h-20 border-primary border-t-2 animate-spin rounded-full absolute left-0 top-0"></div>
+            </div>
+          </div>
+        )
+      }
       <ProductHeader title={"¡Revisa Nuesto Menu!"} />
       <ServicesSlider />
       <About />
       <Testimonials />
-
     </div>
   )
 }

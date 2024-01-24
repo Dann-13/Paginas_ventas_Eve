@@ -33,7 +33,7 @@ function ProductPage() {
     }
 
     return (
-        <div className="pt-10 md:pt-32">
+        <div className="pt-52 px-10 md:pt-24 ">
             <div className="flex flex-col justify-center items-center md:flex-row">
                 <div className="w-full md:w-[50%] h-auto md:px-8">
                     <img
@@ -49,7 +49,7 @@ function ProductPage() {
                         {product.description}
                     </p>
                     <div className="flex items-center justify-between py-3">
-                        <h3 className="text-md md:text-lg font-medium">Ingredientes</h3>
+                        <h3 className="text-md md:text-2xl font-medium">Ingredientes</h3>
                         <h3 className="text-md md:text-lg font-medium">Cantidad</h3>
                     </div>
                     <div>
@@ -60,13 +60,13 @@ function ProductPage() {
                             </div>
                         ))}
                     </div>
-                    <p className="text-lg md:text-3xl font-veneer text-redprimary py-3 text-center">${product.price}</p>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center md:items-start">
+                        <p className="text-lg md:text-3xl font-veneer text-redprimary py-3 text-center">${product.price}</p>
                         <p className="text-xs">Puedes ordenar hasta 20 productos.</p>
                         <div className="py-3 pb-3 flex items-center space-x-3">
-                            <button className="border py-2 px-3 rounded-md hover:bg-green-400 cursor-pointer">+</button>
-                            <button className="py-2 px-3 border rounded-md">1</button>
-                            <button className="border py-2 px-3 rounded-md hover:bg-primary">-</button>
+                            <button className="border-2 py-2 px-3 rounded-md hover:bg-green-400 cursor-pointer">+</button>
+                            <button className="py-2 px-3 border-2 rounded-md font-veneer">1</button>
+                            <button className="border-2 py-2 px-3 rounded-md hover:bg-primary">-</button>
                         </div>
                         <button className="border rounded-lg text-lg bg-primary p-2 font-veneer text-white">Agregar al Carrito</button>
                     </div>

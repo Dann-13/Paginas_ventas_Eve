@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../../../context/authContext';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Options() {
+function OptionsUser() {
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const { logout} = useAuth();
     const navigate = useNavigate();
@@ -52,4 +52,4 @@ function Options() {
     )
 }
 
-export default Options
+export default OptionsUser

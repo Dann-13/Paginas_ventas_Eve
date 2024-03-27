@@ -2,6 +2,8 @@ import React from 'react';
 import { FaShoppingCart, FaStar } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext'
+import { Toaster, toast } from 'sonner'
+
 /**
  * 
  * @param {*} param0 
@@ -10,19 +12,19 @@ import { useAuth } from '../context/authContext'
 function ProductCard({ product }) {
     const navigate = useNavigate();
     const { isAuthenticated } = useAuth();
-    console.log(isAuthenticated)
-    const handleClick = (event) =>{
+    const handleClick = (event) => {
         event.preventDefault();
-        if(isAuthenticated){
+        if (isAuthenticated) {
             console.log("Autenticado")
-        }else{
-            navigate('/login')
+        } else {
+            console.log("No estas autenticado")
+            toast.info('No estas autenticado, por favor inicia sesion')
         }
     }
     return (
         <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <Link key={product.id} to={`/product/${product.slug}`}
-            className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+                className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                 <img className="object-cover" src={product.urlImage} />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
             </Link>
@@ -42,9 +44,10 @@ function ProductCard({ product }) {
                     </div>
                 </div>
                 <Link to="" onClick={handleClick} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                    
+
                     Add to cart</Link>
             </div>
+            <Toaster />
         </div>
 
     );

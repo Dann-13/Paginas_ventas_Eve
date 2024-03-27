@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../../context/authContext';
-import Options from './Options';
+import OptionsUser from './OptionsUser';
 import { Link, useNavigate } from 'react-router-dom';
+import CartOprions from './CartOprions';
 
 function NavBar() {
     const { logout, isAuthenticated, isAdmin } = useAuth();
@@ -16,7 +17,7 @@ function NavBar() {
             servicesSliderElement.scrollIntoView({ behavior: 'smooth' });
         }
     };
-    
+
 
 
     const renderLinks = () => {
@@ -50,12 +51,12 @@ function NavBar() {
 
                         {isAuthenticated ? (
                             <div className='flex items-center gap-2'>
-                                <Options />
+                                <OptionsUser />
                             </div>
                         ) : (
                             <div>
                                 <div className='flex gap-2'>
-                                    
+                                    <CartOprions />
                                     <Link to='/login' className='rounded-lg bg-primary text-white py-2 px-5 cursor-pointer font-veneer'>Iniciar Sesion</Link>
                                 </div>
                             </div>

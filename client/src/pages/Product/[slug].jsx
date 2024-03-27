@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useProduct } from "../../context/productContext";
+import { useAuth } from "../../context/authContext";
+import { toast, Toaster } from "sonner";
 function ProductPage() {
     const { getProduct, product } = useProduct();
     const [dataLoaded, setDataLoaded] = useState(false);
+    const { isAuthenticated } = useAuth();
     const { slug } = useParams();
     useEffect(() => {
         const fetchData = async () => {
@@ -18,7 +21,16 @@ function ProductPage() {
 
         fetchData();
     }, [slug]);
-    console.log(product)
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        if (isAuthenticated) {
+            console.log("Autenticado, añaddiendo al carrito")
+        } else {
+            console.log("No estas autenticado")
+            toast.info('No estas autenticado, por favor inicia sesion')
+        }
+    }
 
 
     if (!dataLoaded) {
@@ -68,10 +80,11 @@ function ProductPage() {
                             <button className="py-2 px-3 border-2 rounded-md font-veneer">1</button>
                             <button className="border-2 py-2 px-3 rounded-md hover:bg-primary">-</button>
                         </div>
-                        <button className="border rounded-lg text-lg bg-primary p-2 font-veneer text-white">Agregar al Carrito</button>
+                        <Link  onClick={handleClick} className="border rounded-lg text-lg bg-primary p-2 font-veneer text-white">Agregar al Carrito</Link>
                     </div>
                 </div>
             </div>
+            <Toaster />
         </div>
 
     )

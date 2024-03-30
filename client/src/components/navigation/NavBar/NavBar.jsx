@@ -51,12 +51,13 @@ function NavBar() {
 
                         {isAuthenticated ? (
                             <div className='flex items-center gap-2'>
+                                <CartOprions />
                                 <OptionsUser />
                             </div>
                         ) : (
                             <div>
                                 <div className='flex gap-2'>
-                                    <CartOprions />
+                                    
                                     <Link to='/login' className='rounded-lg bg-primary text-white py-2 px-5 cursor-pointer font-veneer'>Iniciar Sesion</Link>
                                 </div>
                             </div>

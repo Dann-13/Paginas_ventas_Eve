@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext'
 import { Toaster, toast } from 'sonner'
 
+
 /**
  * 
  * @param {*} param0 
@@ -15,7 +16,7 @@ function ProductCard({ product }) {
     const handleClick = (event) => {
         event.preventDefault();
         if (isAuthenticated) {
-            console.log("Autenticado")
+            console.log("Producto añadido al carrito:");
         } else {
             console.log("No estas autenticado")
             toast.info('No estas autenticado, por favor inicia sesion')
@@ -43,9 +44,9 @@ function ProductCard({ product }) {
                         <FaStar className='text-yellow-400' />
                     </div>
                 </div>
-                <Link to="" onClick={handleClick} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                <button to="" onClick={handleClick} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
 
-                    Add to cart</Link>
+                    Add to cart</button>
             </div>
             <Toaster />
         </div>

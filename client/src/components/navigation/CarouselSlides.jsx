@@ -54,13 +54,13 @@ function CarouselSlides() {
                 <button
                     type="button"
                     onClick={goToPrev}
-                    className="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                    className="flex absolute top-0 left-0 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                 >
                     <img src='/iconmonstr-angel-left-thin.svg' />
                 </button>
                 <button
                     type="button"
-                    className="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                    className="flex absolute top-0 right-0 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                     onClick={goToNext}
                 >
                     <img src='/iconmonstr-angel-right-thin.svg' />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useCart } from '../../../context/CartContext';
 import Cart from '../../cart/Cart';
-
+import {RiShoppingCartFill} from '@remixicon/react'
 function CartOprions() {
     const { cart, setShowCart, showCart } = useCart();
     console.log(showCart)
@@ -12,9 +12,9 @@ function CartOprions() {
                 onClick={() => {
                     setShowCart(true);
                 }}
-                className=" top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-md"
+                className=" top-4 right-4 text-white px-4 py-2 "
             >
-                "Abrir Carrito" ({cart.length})
+                <RiShoppingCartFill />
             </button>
 
             {/* Renderiza el carrito si está abierto */}

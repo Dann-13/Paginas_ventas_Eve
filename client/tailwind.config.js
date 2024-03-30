@@ -16,6 +16,7 @@ export default {
 
       backgroundColor: {
         'primary': '#D52F1F',
+        'hover-Primary':'#bc2719',
         'brownPrimary': '#3E2420'
       },
 
